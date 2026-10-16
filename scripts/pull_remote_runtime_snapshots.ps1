@@ -44,10 +44,14 @@ New-Item -ItemType Directory -Force -Path $StagingDir | Out-Null
 $StagedJsonl = Join-Path $StagingDir "health_snapshots.remote.jsonl"
 
 Write-Host "[INFO] Pulling remote snapshot file from ${RemoteUser}@${RemoteHost}:${RemotePath}..."
-$remoteFile = "${RemoteUser}@${RemoteHost}:${RemotePath}/artifacts/runtime/health_snapshots.jsonl"
-& scp -i $KeyPath $remoteFile $StagedJsonl
+# 2026-10-16：服务器密钥只允许 ubuntu 登录，/root 下的文件要 sudo 才能读，
+# 所以不用 scp 直接取，改为 ssh + sudo cat 流回本地（root 登录同样适用）。
+$remoteFile = "${RemotePath}/artifacts/runtime/health_snapshots.jsonl"
+$sudo = if ($RemoteUser -eq "root") { "" } else { "sudo -n " }
+& ssh -i $KeyPath -o BatchMode=yes "${RemoteUser}@${RemoteHost}" "${sudo}cat '$remoteFile'" |
+    Set-Content -LiteralPath $StagedJsonl -Encoding utf8NoBOM
 if ($LASTEXITCODE -ne 0) {
-    throw "scp failed with exit code $LASTEXITCODE"
+    throw "ssh/cat failed with exit code $LASTEXITCODE"
 }
 
 Write-Host "[INFO] Merging into local health_snapshots.jsonl/.csv..."
