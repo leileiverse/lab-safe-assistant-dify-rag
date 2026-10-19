@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+﻿import { useEffect, useRef, useState } from 'react';
 import { useChat, useFeedback, useMetaAndHealth, useSearch, useStats } from '../hooks/useApi';
 import type { ChatResponse, Citation } from '../types/api';
 import ChatMessage, { type Msg } from '../components/ChatMessage';
@@ -12,6 +12,7 @@ import ChatHeader from '../components/ChatHeader';
 import Icon from '../components/Icon';
 import MobileNavigation from '../components/MobileNavigation';
 import { useAuth } from '../contexts/AuthContext';
+import DrillApp from '../pages/drill/DrillApp';
 
 function nowHHMM(): string {
   const d = new Date();
@@ -53,6 +54,8 @@ function saveSession(messages: Msg[], sessionId: string) {
   }
 }
 
+type ViewMode = 'chat' | 'drill';
+
 export default function ChatPage() {
   const { logout } = useAuth();
   const { loading, error: metaError, meta, health, healthChecked } = useMetaAndHealth();
@@ -60,6 +63,8 @@ export default function ChatPage() {
   const { search, busy: searchBusy } = useSearch();
   const { stats, loading: statsLoading } = useStats();
   const { submitFeedback } = useFeedback();
+
+  const [viewMode, setViewMode] = useState<ViewMode>('chat');
 
   const saved = loadSession();
   const [messages, setMessages] = useState<Msg[]>(saved.messages);
@@ -87,10 +92,10 @@ export default function ChatPage() {
 
   // Auto-scroll when messages or busy state changes.
   useEffect(() => {
-    if (scrollRef.current) {
+    if (scrollRef.current && viewMode === 'chat') {
       scrollRef.current.scrollTo({ top: scrollRef.current.scrollHeight, behavior: 'smooth' });
     }
-  }, [messages.length, busy]);
+  }, [messages.length, busy, viewMode]);
 
   const focusComposer = () => {
     if (composerRef.current) {
@@ -138,9 +143,9 @@ export default function ChatPage() {
     try {
       const data = await search(q, 5);
       setLastSearchCitations(data.citations);
-      // 构造一个伪 ChatResponse 用于显示检索结果
+      // 构造一个伪 ChatResponse 用于展示搜索结果
       const pseudoResp: ChatResponse = {
-        answer: `本地知识库命中 **${data.count}** 条相关记录。`,
+        answer: `本地知识库命中 **${data.count}** 条相关记录。\n`,
         mode: 'lab',
         model: 'kb-search',
         decision: 'dify_answer',
@@ -205,12 +210,26 @@ export default function ChatPage() {
 
   const userTurns = messages.filter((m) => m.role === 'user').length;
 
+  const handleOpenDrill = () => {
+    setViewMode('drill');
+  };
+
+  const handleBackToChat = () => {
+    setViewMode('chat');
+  };
+
+  // 安全闯关视图
+  if (viewMode === 'drill') {
+    return <DrillApp onBackToChat={handleBackToChat} />;
+  }
+
   return (
     <div className={`app ${loading ? 'loading-fade' : 'loaded'}`}>
       <Topbar
         health={health}
         healthChecked={healthChecked}
         onOpenNavigation={() => setMobileNavigationOpen(true)}
+        onOpenDrill={handleOpenDrill}
       />
       <Sidebar
         onPick={onPickQuick}

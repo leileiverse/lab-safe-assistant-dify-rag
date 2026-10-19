@@ -1,0 +1,1088 @@
+﻿/* =========================================
+   安全闯关游戏 - 深色科技风主题
+   风格参考：大疆 / Apple Pro / 工业科技感
+   ========================================= */
+
+.drill-app {
+  --drill-bg-0: #070c14;
+  --drill-bg-1: #0d1520;
+  --drill-bg-2: #111c2b;
+  --drill-surface: rgba(20, 32, 48, 0.72);
+  --drill-surface-2: rgba(28, 42, 62, 0.6);
+  --drill-border: rgba(255, 255, 255, 0.08);
+  --drill-border-strong: rgba(255, 255, 255, 0.14);
+  --drill-text: #e8edf5;
+  --drill-text-2: #94a3b8;
+  --drill-text-3: #64748b;
+
+  --drill-accent: #38bdf8;
+  --drill-accent-2: #06b6d4;
+  --drill-accent-glow: rgba(56, 189, 248, 0.3);
+
+  --drill-success: #10b981;
+  --drill-success-bg: rgba(16, 185, 129, 0.12);
+  --drill-warning: #f59e0b;
+  --drill-warning-bg: rgba(245, 158, 11, 0.12);
+  --drill-danger: #f97316;
+  --drill-danger-2: #ef4444;
+  --drill-danger-bg: rgba(239, 68, 68, 0.12);
+
+  --drill-radius-lg: 20px;
+  --drill-radius-md: 14px;
+  --drill-radius-sm: 10px;
+
+  min-height: 100vh;
+  width: 100%;
+  background: var(--drill-bg-0);
+  color: var(--drill-text);
+  font-family: var(--font-sans);
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* ---- 背景层：径向渐变 + 薄雾纹理 ---- */
+.drill-app::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% 20%, rgba(56, 189, 248, 0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 80% 80%, rgba(6, 182, 212, 0.06) 0%, transparent 50%),
+    radial-gradient(ellipse 50% 40% at 20% 90%, rgba(16, 185, 129, 0.04) 0%, transparent 50%),
+    linear-gradient(180deg, var(--drill-bg-1) 0%, var(--drill-bg-0) 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* 噪点纹理 */
+.drill-app::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.5;
+}
+
+/* ---- 粒子背景 ---- */
+.drill-particles {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.drill-particle {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: var(--drill-accent);
+  border-radius: 50%;
+  opacity: 0;
+  animation: drill-particle-float linear infinite;
+  box-shadow: 0 0 6px var(--drill-accent-glow);
+}
+
+@keyframes drill-particle-float {
+  0% {
+    opacity: 0;
+    transform: translateY(100vh) scale(0.5);
+  }
+  10% {
+    opacity: 0.8;
+  }
+  90% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-10vh) scale(1);
+  }
+}
+
+.drill-content {
+  position: relative;
+  z-index: 1;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 24px;
+}
+
+/* ---- 顶部导航 ---- */
+.drill-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 36px;
+}
+
+.drill-back-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: var(--drill-surface);
+  border: 1px solid var(--drill-border);
+  border-radius: var(--drill-radius-sm);
+  color: var(--drill-text-2);
+  cursor: pointer;
+  font-size: 13px;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(12px);
+}
+
+.drill-back-btn:hover {
+  color: var(--drill-text);
+  border-color: var(--drill-border-strong);
+  background: var(--drill-surface-2);
+}
+
+.drill-title {
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  background: linear-gradient(135deg, var(--drill-text) 0%, var(--drill-accent-2) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ---- 分类 Tab ---- */
+.drill-categories {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+}
+
+.drill-cat-btn {
+  padding: 10px 20px;
+  background: var(--drill-surface);
+  border: 1px solid var(--drill-border);
+  border-radius: 999px;
+  color: var(--drill-text-2);
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  transition: all 0.25s ease;
+  backdrop-filter: blur(12px);
+}
+
+.drill-cat-btn:hover {
+  color: var(--drill-text);
+  border-color: var(--drill-border-strong);
+  transform: translateY(-1px);
+}
+
+.drill-cat-btn.active {
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.18), rgba(6, 182, 212, 0.12));
+  border-color: var(--drill-accent);
+  color: var(--drill-accent);
+  box-shadow: 0 0 20px var(--drill-accent-glow);
+}
+
+.drill-cat-count {
+  margin-left: 6px;
+  padding: 1px 8px;
+  font-size: 11px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+}
+
+/* ---- 场景网格 ---- */
+.drill-scenario-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
+  perspective: 1200px;
+}
+
+.drill-scenario-card {
+  position: relative;
+  background: var(--drill-surface);
+  border: 1px solid var(--drill-border);
+  border-radius: var(--drill-radius-lg);
+  padding: 24px;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(16px);
+  overflow: hidden;
+  transform-style: preserve-3d;
+  transform: translateZ(0);
+}
+
+.drill-scenario-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.drill-scenario-card:hover {
+  transform: translateY(-8px) rotateX(2deg);
+  border-color: var(--drill-accent);
+  box-shadow:
+    0 30px 60px rgba(0, 0, 0, 0.5),
+    0 0 40px var(--drill-accent-glow),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.drill-scenario-card:hover::before {
+  opacity: 1;
+}
+
+.drill-scenario-card-icon {
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--drill-radius-md);
+  background: var(--drill-surface-2);
+  border: 1px solid var(--drill-border);
+  margin-bottom: 16px;
+  color: var(--drill-accent-2);
+  transition: all 0.4s ease;
+}
+
+.drill-scenario-card:hover .drill-scenario-card-icon {
+  color: var(--drill-accent);
+  box-shadow: 0 0 20px var(--drill-accent-glow);
+  border-color: var(--drill-accent);
+  transform: scale(1.05);
+}
+
+.drill-scenario-card-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--drill-text);
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+
+.drill-scenario-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.drill-diff-tag {
+  padding: 3px 10px;
+  font-size: 11px;
+  font-weight: 500;
+  border-radius: 999px;
+  letter-spacing: 0.3px;
+}
+
+.drill-diff-beginner {
+  background: var(--drill-success-bg);
+  color: var(--drill-success);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.drill-diff-intermediate {
+  background: var(--drill-warning-bg);
+  color: var(--drill-warning);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.drill-diff-advanced {
+  background: var(--drill-danger-bg);
+  color: var(--drill-danger-2);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+/* ---- 场景大数字装饰 ---- */
+.drill-scenario-number {
+  position: absolute;
+  top: 8px;
+  right: 16px;
+  font-size: 56px;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.04);
+  line-height: 1;
+  letter-spacing: -2px;
+  pointer-events: none;
+  user-select: none;
+  transition: all 0.4s ease;
+}
+
+.drill-scenario-card:hover .drill-scenario-number {
+  color: rgba(56, 189, 248, 0.08);
+  transform: scale(1.1);
+}
+
+/* =========================================
+   闯关页面
+   ========================================= */
+
+.drill-play {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 24px;
+  min-height: calc(100vh - 120px);
+}
+
+.drill-play-main {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ---- 场景画布 ---- */
+.drill-canvas-wrap {
+  position: relative;
+  perspective: 1200px;
+}
+
+.drill-canvas {
+  position: relative;
+  height: 380px;
+  border-radius: var(--drill-radius-lg);
+  border: 1px solid var(--drill-border);
+  overflow: hidden;
+  background: var(--drill-surface);
+  backdrop-filter: blur(16px);
+  transform-style: preserve-3d;
+  transition:
+    transform 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+    filter 0.6s ease;
+}
+
+/* 穿梭：缩出效果（离开当前场景） */
+.drill-canvas.shrink-out {
+  transform: scale(0.6) translateZ(-200px);
+  opacity: 0;
+  filter: blur(10px);
+}
+
+/* 穿梭：爆入效果（新场景进入） */
+.drill-canvas.zoom-in {
+  animation: drill-zoom-in 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes drill-zoom-in {
+  0% {
+    transform: scale(0.3) translateZ(-300px);
+    opacity: 0;
+    filter: blur(20px) brightness(2);
+  }
+  50% {
+    filter: blur(4px) brightness(1.3);
+  }
+  100% {
+    transform: scale(1) translateZ(0);
+    opacity: 1;
+    filter: blur(0) brightness(1);
+  }
+}
+
+/* 扫描线边框效果 */
+.drill-canvas::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: var(--drill-radius-lg);
+  padding: 1px;
+  background: linear-gradient(
+    180deg,
+    rgba(56, 189, 248, 0.3) 0%,
+    transparent 20%,
+    transparent 80%,
+    rgba(6, 182, 212, 0.2) 100%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* 扫描线动画 */
+.drill-canvas::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(56, 189, 248, 0.6),
+    transparent
+  );
+  animation: drill-scan-line 4s linear infinite;
+  pointer-events: none;
+  z-index: 11;
+  opacity: 0.5;
+}
+
+@keyframes drill-scan-line {
+  0% {
+    top: 0;
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.6;
+  }
+  90% {
+    opacity: 0.4;
+  }
+  100% {
+    top: 100%;
+    opacity: 0;
+  }
+}
+
+.drill-canvas-bg {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 背景 A：实验室操作台 */
+.drill-canvas.bg-A .drill-canvas-bg {
+  background:
+    linear-gradient(180deg, rgba(56, 189, 248, 0.04) 0%, transparent 50%),
+    linear-gradient(0deg, rgba(15, 23, 42, 0.8) 0%, rgba(13, 21, 32, 0.9) 100%);
+}
+
+.drill-canvas.bg-A .drill-canvas-bg::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 120px;
+  background: linear-gradient(180deg, transparent, rgba(56, 189, 248, 0.06));
+  border-bottom: 1px solid rgba(56, 189, 248, 0.1);
+}
+
+.drill-canvas.bg-A .drill-canvas-bg::after {
+  content: '';
+  position: absolute;
+  bottom: 118px;
+  left: 10%;
+  right: 10%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.3), transparent);
+}
+
+/* 背景 B：更衣区 */
+.drill-canvas.bg-B .drill-canvas-bg {
+  background:
+    linear-gradient(180deg, rgba(16, 185, 129, 0.04) 0%, transparent 50%),
+    linear-gradient(0deg, rgba(15, 23, 42, 0.8) 0%, rgba(13, 21, 32, 0.9) 100%);
+}
+
+.drill-canvas.bg-B .drill-canvas-bg::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 20%;
+  bottom: 20%;
+  width: 1px;
+  background: linear-gradient(180deg, transparent, rgba(16, 185, 129, 0.3), transparent);
+  transform: translateX(-50%);
+}
+
+/* 背景 C：洗眼器/应急区 */
+.drill-canvas.bg-C .drill-canvas-bg {
+  background:
+    linear-gradient(180deg, rgba(6, 182, 212, 0.06) 0%, transparent 50%),
+    linear-gradient(0deg, rgba(15, 23, 42, 0.8) 0%, rgba(13, 21, 32, 0.9) 100%);
+}
+
+.drill-canvas.bg-C .drill-canvas-bg::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200px;
+  height: 200px;
+  border: 1px solid rgba(6, 182, 212, 0.2);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 80px rgba(6, 182, 212, 0.1);
+  animation: drill-ring-pulse 3s ease-in-out infinite;
+}
+
+@keyframes drill-ring-pulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.8; }
+  50% { transform: translate(-50%, -50%) scale(1.1); opacity: 1; }
+}
+
+.drill-canvas.bg-C .drill-canvas-bg::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 120px;
+  height: 120px;
+  border: 1px solid rgba(6, 182, 212, 0.3);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: drill-ring-pulse 3s ease-in-out infinite;
+  animation-delay: -1.5s;
+}
+
+/* SVG 图标叠加层 */
+.drill-canvas-overlays {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  flex-wrap: wrap;
+  padding: 40px;
+}
+
+.drill-overlay-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: drill-icon-float 4s ease-in-out infinite;
+  filter: drop-shadow(0 0 20px currentColor);
+}
+
+.drill-overlay-icon:nth-child(2) {
+  animation-delay: -1s;
+}
+
+.drill-overlay-icon:nth-child(3) {
+  animation-delay: -2s;
+}
+
+.drill-overlay-icon:nth-child(4) {
+  animation-delay: -0.5s;
+}
+
+@keyframes drill-icon-float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+
+/* 光晕类图标单独处理 */
+.drill-overlay-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  animation: drill-glow-pulse 3s ease-in-out infinite;
+}
+
+@keyframes drill-glow-pulse {
+  0%, 100% { opacity: 0.7; transform: translate(-50%, -50%) scale(1); }
+  50% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
+}
+
+/* 场景画布标题条 */
+.drill-canvas-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.5), transparent);
+  z-index: 12;
+}
+
+.drill-canvas-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--drill-text);
+  letter-spacing: 0.5px;
+}
+
+.drill-canvas-score {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--drill-accent);
+  padding: 4px 12px;
+  background: rgba(56, 189, 248, 0.1);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  border-radius: 999px;
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.15);
+}
+
+/* ---- 场景描述 ---- */
+.drill-narrative {
+  background: var(--drill-surface);
+  border: 1px solid var(--drill-border);
+  border-radius: var(--drill-radius-lg);
+  padding: 24px;
+  backdrop-filter: blur(16px);
+  position: relative;
+  overflow: hidden;
+  animation: drill-slide-up 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.drill-narrative::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  background: linear-gradient(180deg, var(--drill-accent), var(--drill-accent-2));
+  box-shadow: 0 0 12px var(--drill-accent-glow);
+}
+
+.drill-narrative-text {
+  font-size: 14px;
+  line-height: 1.9;
+  color: var(--drill-text);
+  margin: 0;
+}
+
+.drill-narrative-hint {
+  margin-top: 12px;
+  font-size: 12px;
+  color: var(--drill-text-3);
+  font-style: italic;
+}
+
+@keyframes drill-slide-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ---- 选项按钮 ---- */
+.drill-options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.drill-option-btn {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 18px 20px;
+  background: var(--drill-surface);
+  border: 1px solid var(--drill-border);
+  border-radius: var(--drill-radius-md);
+  color: var(--drill-text);
+  cursor: pointer;
+  text-align: left;
+  font-size: 14px;
+  line-height: 1.6;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(16px);
+  position: relative;
+  overflow: hidden;
+}
+
+.drill-option-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(56, 189, 248, 0.08),
+    transparent
+  );
+  transition: left 0.5s ease;
+}
+
+.drill-option-btn:hover:not(:disabled) {
+  border-color: var(--drill-accent);
+  background: var(--drill-surface-2);
+  transform: translateX(8px);
+  box-shadow: -8px 0 24px -12px var(--drill-accent-glow);
+}
+
+.drill-option-btn:hover:not(:disabled)::before {
+  left: 100%;
+}
+
+.drill-option-btn:disabled {
+  cursor: not-allowed;
+}
+
+/* 点击涟漪 */
+.drill-option-btn::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(56, 189, 248, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.4s ease, height 0.4s ease, opacity 0.4s ease;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.drill-option-btn:active:not(:disabled)::after {
+  width: 300px;
+  height: 300px;
+  opacity: 0;
+}
+
+.drill-option-letter {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--drill-surface-2);
+  border: 1px solid var(--drill-border-strong);
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--drill-accent);
+  font-family: var(--font-mono);
+  transition: all 0.3s ease;
+}
+
+.drill-option-btn:hover .drill-option-letter {
+  background: var(--drill-accent);
+  color: var(--drill-bg-0);
+  border-color: var(--drill-accent);
+  box-shadow: 0 0 12px var(--drill-accent-glow);
+}
+
+/* 选中后的状态 */
+.drill-option-btn.selected-correct {
+  border-color: var(--drill-success);
+  background: var(--drill-success-bg);
+  animation: drill-pulse-success 0.6s ease;
+}
+
+@keyframes drill-pulse-success {
+  0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); }
+  70% { box-shadow: 0 0 0 12px rgba(16, 185, 129, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}
+
+.drill-option-btn.selected-correct .drill-option-letter {
+  background: var(--drill-success);
+  color: white;
+  border-color: var(--drill-success);
+}
+
+.drill-option-btn.selected-warning {
+  border-color: var(--drill-warning);
+  background: var(--drill-warning-bg);
+}
+
+.drill-option-btn.selected-warning .drill-option-letter {
+  background: var(--drill-warning);
+  color: white;
+  border-color: var(--drill-warning);
+}
+
+.drill-option-btn.selected-danger {
+  border-color: var(--drill-danger-2);
+  background: var(--drill-danger-bg);
+  animation: drill-shake 0.5s ease;
+}
+
+@keyframes drill-shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-6px); }
+  40%, 80% { transform: translateX(6px); }
+}
+
+.drill-option-btn.selected-danger .drill-option-letter {
+  background: var(--drill-danger-2);
+  color: white;
+  border-color: var(--drill-danger-2);
+}
+
+/* ---- 反馈面板 ---- */
+.drill-feedback {
+  margin-top: 8px;
+  background: var(--drill-surface);
+  border: 1px solid var(--drill-border);
+  border-radius: var(--drill-radius-lg);
+  overflow: hidden;
+  backdrop-filter: blur(16px);
+  animation: drill-feedback-in 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes drill-feedback-in {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.drill-feedback-header {
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.drill-feedback-header.correct {
+  background: var(--drill-success-bg);
+  border-bottom: 1px solid rgba(16, 185, 129, 0.2);
+  color: var(--drill-success);
+}
+
+.drill-feedback-header.warning {
+  background: var(--drill-warning-bg);
+  border-bottom: 1px solid rgba(245, 158, 11, 0.2);
+  color: var(--drill-warning);
+}
+
+.drill-feedback-header.danger {
+  background: var(--drill-danger-bg);
+  border-bottom: 1px solid rgba(239, 68, 68, 0.2);
+  color: var(--drill-danger-2);
+}
+
+.drill-feedback-score {
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-size: 13px;
+}
+
+.drill-feedback-body {
+  padding: 20px;
+  font-size: 14px;
+  line-height: 1.9;
+  color: var(--drill-text);
+}
+
+.drill-feedback-kb-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--drill-text-2);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 20px 20px 12px;
+}
+
+.drill-feedback-kb-list {
+  padding: 0 20px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.drill-kb-card {
+  padding: 12px 16px;
+  background: var(--drill-surface-2);
+  border: 1px solid var(--drill-border);
+  border-radius: var(--drill-radius-sm);
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.drill-kb-card:hover {
+  border-color: var(--drill-accent);
+  background: rgba(56, 189, 248, 0.06);
+  transform: translateX(4px);
+}
+
+.drill-kb-card-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--drill-text);
+  margin-bottom: 4px;
+}
+
+.drill-kb-card-snippet {
+  font-size: 12px;
+  color: var(--drill-text-2);
+  line-height: 1.6;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.drill-feedback-actions {
+  padding: 16px 20px 20px;
+  display: flex;
+  gap: 12px;
+  border-top: 1px solid var(--drill-border);
+}
+
+.drill-btn-primary {
+  flex: 1;
+  padding: 12px 20px;
+  background: linear-gradient(135deg, var(--drill-accent), var(--drill-accent-2));
+  border: none;
+  border-radius: var(--drill-radius-sm);
+  color: var(--drill-bg-0);
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.drill-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px var(--drill-accent-glow);
+}
+
+.drill-btn-primary:active {
+  transform: translateY(0);
+}
+
+.drill-btn-secondary {
+  padding: 12px 20px;
+  background: var(--drill-surface-2);
+  border: 1px solid var(--drill-border-strong);
+  border-radius: var(--drill-radius-sm);
+  color: var(--drill-text-2);
+  font-weight: 500;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.drill-btn-secondary:hover {
+  color: var(--drill-text);
+  border-color: var(--drill-border-strong);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+/* ---- 侧边栏 ---- */
+.drill-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  height: fit-content;
+  position: sticky;
+  top: 24px;
+}
+
+.drill-side-card {
+  background: var(--drill-surface);
+  border: 1px solid var(--drill-border);
+  border-radius: var(--drill-radius-lg);
+  padding: 20px;
+  backdrop-filter: blur(16px);
+}
+
+.drill-side-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--drill-text-3);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 16px;
+}
+
+.drill-stat-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--drill-border);
+  font-size: 13px;
+}
+
+.drill-stat-row:last-child {
+  border-bottom: none;
+}
+
+.drill-stat-label {
+  color: var(--drill-text-2);
+}
+
+.drill-stat-value {
+  font-weight: 600;
+  color: var(--drill-text);
+  font-family: var(--font-mono);
+}
+
+.drill-risk-bar {
+  height: 6px;
+  border-radius: 999px;
+  background: var(--drill-surface-2);
+  margin-top: 4px;
+  overflow: hidden;
+}
+
+.drill-risk-fill {
+  height: 100%;
+  border-radius: 999px;
+  transition: all 0.5s ease;
+}
+
+/* ---- 穿梭过渡遮罩 ---- */
+.drill-warp-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  pointer-events: none;
+  background: radial-gradient(circle at center, rgba(56, 189, 248, 0.15) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.drill-warp-overlay.active {
+  opacity: 1;
+  animation: drill-warp-flash 0.5s ease-out;
+}
+
+@keyframes drill-warp-flash {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+    filter: brightness(3);
+  }
+  30% {
+    opacity: 1;
+    filter: brightness(2);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.5);
+    filter: brightness(1);
+  }
+}
+
+/* 响应式 */
+@media (max-width: 900px) {
+  .drill-play {
+    grid-template-columns: 1fr;
+  }
+  .drill-sidebar {
+    position: static;
+  }
+  .drill-scenario-grid {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  }
+  .drill-canvas {
+    height: 280px;
+  }
+}

@@ -21,7 +21,7 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.gzip import GZipMiddleware
 from fastapi.responses import FileResponse
 
-from .routers import chat_router, meta_router, kb_router
+from .routers import chat_router, meta_router, kb_router, drill_router
 from .repositories import get_kb_entries
 from .services.response_cache_service import load_cache_from_disk, save_cache_to_disk
 from .services.kb_usage_service import load_usage_from_disk
@@ -76,6 +76,7 @@ if _frontend_index.exists():
 app.include_router(meta_router)
 app.include_router(kb_router)
 app.include_router(chat_router)
+app.include_router(drill_router)
 
 if _frontend_index.exists():
     # 自定义 /assets/* 路由，确保 MIME 类型正确

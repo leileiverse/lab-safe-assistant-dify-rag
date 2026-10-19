@@ -70,6 +70,77 @@ def assess_out_of_scope(
     return False, ""
 
 
+_CONVERSATION_SWITCH_VALUES = {"0", "false", "off", "no"}
+_CONVERSATION_SAFETY_MARKERS = (
+    "实验", "实验室", "安全", "化学", "试剂", "危化",
+    "泄漏", "火灾", "着火", "爆炸", "受伤", "中毒",
+    "触电", "废液", "废弃", "气瓶", "通风柜", "离心机",
+    "设备", "操作",
+)
+_GREETING_MESSAGES = {
+    "你好", "您好", "嗨", "哈喽", "hello", "hi", "hey",
+    "在吗", "早上好", "下午好", "晚上好", "hi there",
+}
+_IDENTITY_MESSAGES = {
+    "你是谁", "你是什么", "你是做什么的", "这是啥",
+    "这是什么", "介绍一下你自己", "你是谁呀",
+}
+_CAPABILITY_MESSAGES = {
+    "你能做什么", "你可以做什么", "你会什么",
+    "你的功能是什么", "你有什么功能", "怎么使用",
+    "怎么用", "使用说明",
+}
+_THANKS_MESSAGES = {
+    "谢谢", "谢谢你", "感谢", "多谢", "辛苦了",
+    "谢谢啦", "thank you", "thanks",
+}
+
+def _conversation_shortcuts_enabled() -> bool:
+    value = os.getenv("LABSAFE_CONVERSATIONAL_SHORTCUTS", "1").strip().lower()
+    return value not in _CONVERSATION_SWITCH_VALUES
+
+
+def build_conversational_answer(question: str) -> str | None:
+    """Return a local answer for standalone social messages.
+
+    This stays intentionally narrow: a message that contains any laboratory
+    safety marker keeps the normal retrieval and rule-engine path. It avoids
+    treating "你好，乙醚泄漏怎么办" as casual conversation while making basic
+    product interaction deterministic and independent of KB relevance scores.
+    Set ``LABSAFE_CONVERSATIONAL_SHORTCUTS=0`` to disable this layer.
+    """
+    if not _conversation_shortcuts_enabled():
+        return None
+
+    normalized = normalize_search_text(question).strip("，。！？!?. ")
+    if not normalized or len(normalized) > 24:
+        return None
+    if any(marker in normalized for marker in _CONVERSATION_SAFETY_MARKERS):
+        return None
+    if normalized in _GREETING_MESSAGES:
+        return (
+            "你好，我是实验室安全小助手。\n\n"
+            "我可以协助查询化学品使用与储存、实验设备操作、个人防护、废弃物分类和应急处置等实验室安全问题。"
+        )
+    if normalized in _IDENTITY_MESSAGES:
+        return (
+            "我是面向实验室安全场景的智能问答助手。\n\n"
+            "我会结合安全规则和项目知识库，提供可追溯的操作建议；涉及紧急情况时，请先撤离危险区域并按单位应急预案处置。"
+        )
+    if normalized in _CAPABILITY_MESSAGES:
+        return (
+            "我可以协助你快速梳理实验室安全问题：\n"
+            "1. 化学品的储存、使用、泄漏与废液处置\n"
+            "2. 通风柜、离心机、气瓶、液相色谱等设备的安全操作\n"
+            "3. PPE、实验室准入、风险评估与日常规范\n"
+            "4. 火灾、触电、化学暴露等应急处置\n\n"
+            "请直接描述具体的化学品、设备或操作场景。"
+        )
+    if normalized in _THANKS_MESSAGES:
+        return "不客气。涉及具体操作前，请再核对本单位 SOP、SDS 和现场安全条件。"
+    return None
+
+
 
 # DeepSeek's answers commonly end in one of several ways that are NOT
 # truncation even though they don't end in "." or "。":

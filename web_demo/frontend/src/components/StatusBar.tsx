@@ -1,11 +1,17 @@
-import { useState } from 'react';
+﻿import { useState } from 'react';
 import type { DemoMetaResponse } from '../types/api';
 import Icon from './Icon';
+import './drill-nav-btn.css';
 
 interface TopbarProps {
   health: boolean;
   healthChecked: boolean;
   onOpenNavigation?: () => void;
+  onOpenDrill?: () => void;
+}
+
+interface FootbarProps {
+  meta: DemoMetaResponse | null;
 }
 
 function Modal({ title, children, onClose }: { title: string; children: React.ReactNode; onClose: () => void }) {
@@ -22,7 +28,7 @@ function Modal({ title, children, onClose }: { title: string; children: React.Re
   );
 }
 
-export function Topbar({ health, healthChecked, onOpenNavigation }: TopbarProps) {
+export function Topbar({ health, healthChecked, onOpenNavigation, onOpenDrill }: TopbarProps) {
   const [showSettings, setShowSettings] = useState(false);
   const [showHelp, setShowHelp] = useState(false);
 
@@ -61,6 +67,16 @@ export function Topbar({ health, healthChecked, onOpenNavigation }: TopbarProps)
           </div>
         </div>
         <div className="top-actions">
+          {onOpenDrill && (
+            <button
+              className="drill-nav-btn"
+              onClick={onOpenDrill}
+              title="安全闯关实训"
+            >
+              <Icon name="fire" size={14} />
+              <span>安全闯关</span>
+            </button>
+          )}
           <div className="health-pill">
             <span className={`health-dot ${dotCls}`} />
             <span>{text}</span>
@@ -98,6 +114,7 @@ export function Topbar({ health, healthChecked, onOpenNavigation }: TopbarProps)
             <div>• 输入实验室安全问题，AI 将基于知识库作答</div>
             <div>• 点击「仅检索」可查看本地知识库命中结果</div>
             <div>• 左侧历史记录可点击重新提问</div>
+            <div>• 点击顶部「安全闯关」进入沉浸式场景实训</div>
             <div>• 知识库态势页面可查看 3009 条知识库调用覆盖情况</div>
             <div style={{ marginTop: 12, color: '#94a3b8', fontSize: 12 }}>本助手仅供参考，最终操作以本单位 SOP 与安全员意见为准。</div>
           </div>
@@ -105,10 +122,6 @@ export function Topbar({ health, healthChecked, onOpenNavigation }: TopbarProps)
       )}
     </>
   );
-}
-
-interface FootbarProps {
-  meta: DemoMetaResponse | null;
 }
 
 export function Footbar({ meta }: FootbarProps) {

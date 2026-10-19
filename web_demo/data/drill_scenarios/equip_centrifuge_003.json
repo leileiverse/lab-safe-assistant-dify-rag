@@ -1,0 +1,45 @@
+﻿{
+  "scenario_id": "equip_centrifuge_003",
+  "title": "离心机运转时开盖",
+  "category": "equipment",
+  "difficulty": "intermediate",
+  "background": "A",
+  "overlay_svgs": ["漏电闪电", "橙红色告警光晕"],
+  "narrative": "离心机正在运转，你突然想起有个样品放错位置了。转子嗡嗡转着，你犹豫要不要现在打开盖子调整一下。",
+  "hint": "离心机是实验室高风险设备之一，安全操作的红线是什么？",
+  "options": [
+    {
+      "id": "A",
+      "text": "等转子完全停止后再开盖调整",
+      "result": "✅ 操作正确。离心机运转时绝对不能开盖！必须等转子完全停止后才能打开盖子。如果需要紧急停止，使用停止按钮（有制动功能的型号），绝不能强行开盖或用手试图让转子停下来。",
+      "feedback_type": "correct",
+      "score_delta": 10,
+      "is_deadly": false,
+      "kb_ids": ["KB-1030", "KB-RECO-0382"],
+      "next_background": "A",
+      "next_svgs": []
+    },
+    {
+      "id": "B",
+      "text": "按停止键，等几秒慢下来就开盖",
+      "result": "⚠️ 存在隐患。即使按了停止键，转子减速过程中仍然有很大的转动惯量，此时开盖仍然非常危险。转子可能飞脱或碎片甩出。必须等转子完全停止后才能开盖。",
+      "feedback_type": "warning",
+      "score_delta": -8,
+      "is_deadly": false,
+      "kb_ids": ["KB-1030"],
+      "next_background": "A",
+      "next_svgs": ["橙红色告警光晕"]
+    },
+    {
+      "id": "C",
+      "text": "边转边打开看看，快速调整一下",
+      "result": "❌ 极度危险！离心机运转时强行开盖是严重违规操作，高速旋转的转子可能导致样品飞脱、转子破裂甚至人员重伤。历史上有多起离心机开盖导致的严重伤害事故。必须等完全停止！",
+      "feedback_type": "danger",
+      "score_delta": -15,
+      "is_deadly": false,
+      "kb_ids": ["KB-1030", "KB-RECO-0382"],
+      "next_background": "A",
+      "next_svgs": ["橙红色告警光晕", "漏电闪电"]
+    }
+  ]
+}

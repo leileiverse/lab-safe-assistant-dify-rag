@@ -1,0 +1,65 @@
+{
+  "scenario_id": "eyewash_station_033",
+  "title": "化学品溅入眼睛怎么办",
+  "category": "emergency",
+  "difficulty": "beginner",
+  "background": "C",
+  "overlay_svgs": [
+    "护目镜",
+    "化学灼伤抽象警示符号"
+  ],
+  "narrative": "你在转移浓盐酸时不小心溅了一滴到眼睛里，眼睛立刻剧痛。旁边有洗眼器，你想先找一下有没有中和液。",
+  "hint": "化学品溅入眼睛的第一时间应该做什么？能揉眼睛吗？",
+  "options": [
+    {
+      "id": "A",
+      "text": "立即到洗眼器处，用大量流动水持续冲洗至少 15 分钟",
+      "result": "操作正确。化学品溅入眼睛后，第一时间用洗眼器大量流动清水冲洗是最重要的处置措施。冲洗时翻开眼睑，确保结膜囊各部位都能冲洗到，持续至少 15 分钟。冲洗后立即送医。绝对不能揉眼睛。",
+      "feedback_type": "correct",
+      "score_delta": 10,
+      "is_deadly": false,
+      "kb_ids": [
+        "KB-1037",
+        "KB-RECO-0417",
+        "KB-CORNELL-11018"
+      ],
+      "next_background": "C",
+      "next_svgs": []
+    },
+    {
+      "id": "B",
+      "text": "先找找有没有中和液，酸碱中和一下",
+      "result": "严重错误！眼睛化学灼伤绝对不能尝试用中和液！眼部组织非常娇嫩，中和反应产生的热量会造成二次热灼伤，加重损伤。唯一正确的第一时间处置是用大量流动清水持续冲洗，然后尽快就医。",
+      "feedback_type": "danger",
+      "score_delta": -15,
+      "is_deadly": false,
+      "kb_ids": [
+        "KB-1037",
+        "KB-RECO-0417",
+        "KB-CORNELL-11018"
+      ],
+      "next_background": "C",
+      "next_svgs": [
+        "橙红色告警光晕",
+        "化学灼伤抽象警示符号"
+      ]
+    },
+    {
+      "id": "C",
+      "text": "先闭上眼睛揉一揉，把液体弄出来",
+      "result": "严重错误！化学灼伤眼睛后揉眼睛会加重角膜和结膜的机械性损伤，还可能扩大化学物质的接触面。正确做法是立即用洗眼器大量流水冲洗，不要揉眼，不要闭眼不处理。",
+      "feedback_type": "danger",
+      "score_delta": -12,
+      "is_deadly": false,
+      "kb_ids": [
+        "KB-1037",
+        "KB-RECO-0417",
+        "KB-CORNELL-11018"
+      ],
+      "next_background": "C",
+      "next_svgs": [
+        "化学灼伤抽象警示符号"
+      ]
+    }
+  ]
+}

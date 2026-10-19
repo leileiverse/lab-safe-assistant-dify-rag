@@ -1,0 +1,64 @@
+{
+  "scenario_id": "laser_safety_035",
+  "title": "激光实验室能直视激光吗",
+  "category": "equipment",
+  "difficulty": "intermediate",
+  "background": "A",
+  "overlay_svgs": [
+    "护目镜",
+    "橙红色告警光晕"
+  ],
+  "narrative": "你去激光实验室找同学，激光仪器正在运行，你好奇地凑过去想看看激光束是什么样的。桌子上放着几副激光防护眼镜。",
+  "hint": "激光对眼睛有什么危害？能不能直视激光束？",
+  "options": [
+    {
+      "id": "A",
+      "text": "不能直视激光束，必须佩戴相应波长的激光防护镜",
+      "result": "操作正确。激光的能量高度集中，即使是低功率的激光直视也可能造成视网膜永久性损伤，甚至失明。进入激光实验室和操作激光设备时，必须佩戴与激光波长相匹配的专用防护眼镜，严禁直视激光束。",
+      "feedback_type": "correct",
+      "score_delta": 10,
+      "is_deadly": false,
+      "kb_ids": [
+        "WEB-007-011",
+        "WEB-010-002",
+        "WEB-010-003"
+      ],
+      "next_background": "A",
+      "next_svgs": []
+    },
+    {
+      "id": "B",
+      "text": "功率不大，看一眼没事",
+      "result": "极度危险！激光对眼睛的伤害与功率大小不一定成正比。即使是毫瓦级的激光，如果直接聚焦在视网膜上，也可能造成不可逆的视力损伤甚至失明。激光安全没有\"看一眼没事\"的说法。",
+      "feedback_type": "danger",
+      "score_delta": -15,
+      "is_deadly": false,
+      "kb_ids": [
+        "WEB-007-011",
+        "WEB-010-002",
+        "WEB-010-003"
+      ],
+      "next_background": "A",
+      "next_svgs": [
+        "橙红色告警光晕"
+      ]
+    },
+    {
+      "id": "C",
+      "text": "戴普通墨镜就行",
+      "result": "防护不足。普通太阳镜不能替代激光防护眼镜。激光防护眼镜必须针对特定波长，普通墨镜对特定波长激光的衰减远远不够，可能给人虚假的安全感。必须使用与激光波长匹配的专用防护镜。",
+      "feedback_type": "warning",
+      "score_delta": -8,
+      "is_deadly": false,
+      "kb_ids": [
+        "WEB-007-011",
+        "WEB-010-002",
+        "WEB-010-003"
+      ],
+      "next_background": "A",
+      "next_svgs": [
+        "橙红色告警光晕"
+      ]
+    }
+  ]
+}

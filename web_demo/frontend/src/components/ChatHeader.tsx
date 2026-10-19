@@ -14,7 +14,7 @@ export default function ChatHeader({ count }: Props) {
             </span>
           )}
         </h2>
-        <span className="lane">Dify + RAG 智能问答链路</span>
+        <span className="lane"><i /> Dify + RAG 智能问答链路已就绪</span>
       </div>
     </div>
   );

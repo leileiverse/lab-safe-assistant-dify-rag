@@ -1,0 +1,64 @@
+{
+  "scenario_id": "glass_cut_injury_021",
+  "title": "被碎玻璃割伤了",
+  "category": "emergency",
+  "difficulty": "beginner",
+  "background": "A",
+  "overlay_svgs": [
+    "烧杯",
+    "化学灼伤抽象警示符号"
+  ],
+  "narrative": "你在刷洗烧杯时，烧杯突然破裂，碎片划伤了你的左手食指，伤口约 1 厘米长，在流血。伤口上好像还沾了点化学试剂。",
+  "hint": "实验中被玻璃割伤后第一步是什么？能不能直接贴创可贴？",
+  "options": [
+    {
+      "id": "A",
+      "text": "先冲洗伤口和手上的化学品，再消毒、包扎，必要时就医",
+      "result": "操作正确。实验室割伤首先要确认伤口内有无化学品和玻璃碎屑。先用大量清水冲洗，冲掉污染物和可能的化学品；然后检查伤口有无异物；用碘伏或酒精消毒后包扎。伤口较深或有污染物时应及时就医，必要时打破伤风。",
+      "feedback_type": "correct",
+      "score_delta": 10,
+      "is_deadly": false,
+      "kb_ids": [
+        "KB-PHASE4-0423",
+        "KB-CORNELL-11006",
+        "KB-RECO-0002"
+      ],
+      "next_background": "A",
+      "next_svgs": []
+    },
+    {
+      "id": "B",
+      "text": "直接贴个创可贴止血继续做实验",
+      "result": "严重错误！直接贴创可贴会将玻璃碎屑和可能的化学试剂封在伤口内，造成感染、化学灼伤加重或异物残留。伤口必须先清洗、消毒、检查有无异物后再包扎。在化学实验室受伤尤其要注意清除化学品污染。",
+      "feedback_type": "danger",
+      "score_delta": -12,
+      "is_deadly": false,
+      "kb_ids": [
+        "KB-PHASE4-0423",
+        "KB-CORNELL-11006",
+        "KB-RECO-0002"
+      ],
+      "next_background": "A",
+      "next_svgs": [
+        "橙红色告警光晕"
+      ]
+    },
+    {
+      "id": "C",
+      "text": "伤口不大，挤挤血就好了",
+      "result": "不规范。挤压伤口可能将污染物推入更深层的组织，加重损伤。正确做法是清水冲洗、消毒、检查异物、包扎。对于可能被生物或化学污染的伤口，应特别注意冲洗和专业医疗处理。",
+      "feedback_type": "warning",
+      "score_delta": -5,
+      "is_deadly": false,
+      "kb_ids": [
+        "KB-PHASE4-0423",
+        "KB-CORNELL-11006",
+        "KB-RECO-0002"
+      ],
+      "next_background": "A",
+      "next_svgs": [
+        "化学灼伤抽象警示符号"
+      ]
+    }
+  ]
+}

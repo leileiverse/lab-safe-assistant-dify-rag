@@ -1,0 +1,60 @@
+{
+  "scenario_id": "ppe_entry_dress_012",
+  "title": "进实验室要穿什么",
+  "category": "ppe",
+  "difficulty": "beginner",
+  "background": "B",
+  "overlay_svgs": [
+    "护目镜",
+    "橡胶手套"
+  ],
+  "narrative": "你今天第一天来实验室，穿着短裤、拖鞋、宽松 T 恤，背着包准备进实验室做实验。",
+  "hint": "进入化学实验室的着装有什么基本要求？哪些是绝对不允许的？",
+  "options": [
+    {
+      "id": "A",
+      "text": "换上实验服、长裤、包头鞋，戴护目镜",
+      "result": "✅ 正确。进入实验室必须穿戴合适的个人防护装备：实验服（扣好扣子）、长裤（遮住脚踝）、包头鞋（不露脚趾）、护目镜。长发要束起，去除首饰和宽松饰物。这是实验室准入的基本要求。",
+      "feedback_type": "correct",
+      "score_delta": 10,
+      "is_deadly": false,
+      "kb_ids": [
+        "KB-GEN-4011",
+        "KB-GEN-10455"
+      ],
+      "next_background": "A",
+      "next_svgs": []
+    },
+    {
+      "id": "B",
+      "text": "穿拖鞋凉快，做实验注意点就行",
+      "result": "❌ 严重违规。拖鞋/凉鞋无法保护脚部，一旦有化学品掉落或玻璃器皿碎裂，脚面会直接受伤。必须穿包头、防滑的实验鞋。短裤同样违规，腿部皮肤暴露在风险中。",
+      "feedback_type": "danger",
+      "score_delta": -12,
+      "is_deadly": false,
+      "kb_ids": [
+        "KB-GEN-4011",
+        "KB-GEN-10455"
+      ],
+      "next_background": "B",
+      "next_svgs": [
+        "橙红色告警光晕"
+      ]
+    },
+    {
+      "id": "C",
+      "text": "戴手套就不用穿实验服了",
+      "result": "⚠️ 错误认知。手套保护的是手，实验服保护的是躯干和手臂，二者不能互相替代。实验服可以防止化学品溅到衣物和皮肤上，也是防止交叉污染的重要屏障。",
+      "feedback_type": "warning",
+      "score_delta": -6,
+      "is_deadly": false,
+      "kb_ids": [
+        "KB-GAP-8020"
+      ],
+      "next_background": "B",
+      "next_svgs": [
+        "橙红色告警光晕"
+      ]
+    }
+  ]
+}

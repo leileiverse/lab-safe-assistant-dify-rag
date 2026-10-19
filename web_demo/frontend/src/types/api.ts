@@ -24,6 +24,7 @@ export type DecisionKind =
   | 'emergency_redirect'
   | 'need_more_info'
   | 'structured_fallback'
+  | 'conversational_local'
   | string;
 
 export interface ChatResponse {

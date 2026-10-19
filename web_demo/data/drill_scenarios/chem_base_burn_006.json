@@ -1,0 +1,64 @@
+{
+  "scenario_id": "chem_base_burn_006",
+  "title": "浓碱液溅到手臂",
+  "category": "chemical",
+  "difficulty": "intermediate",
+  "background": "A",
+  "overlay_svgs": [
+    "烧杯",
+    "化学灼伤抽象警示符号"
+  ],
+  "narrative": "你正在配制 30% 氢氧化钠溶液，不小心将溶液溅到了裸露的小臂上。皮肤开始有滑腻感和灼热感。",
+  "hint": "碱灼伤和酸灼伤的处置有什么不同？第一时间做什么？",
+  "options": [
+    {
+      "id": "A",
+      "text": "立即用大量流动清水持续冲洗至少15-20分钟",
+      "result": "✅ 操作正确。浓碱灼伤同样需要立即用大量流动清水冲洗，持续时间比酸灼伤更长（15-20分钟以上），因为碱液对组织的穿透性更强。冲洗时脱去被污染的衣物，然后视情况就医。",
+      "feedback_type": "correct",
+      "score_delta": 10,
+      "is_deadly": false,
+      "kb_ids": [
+        "KB-PHASE4-0311",
+        "KB-RECO-0416",
+        "KB-PHASE4-0685"
+      ],
+      "next_background": "C",
+      "next_svgs": [
+        "化学灼伤抽象警示符号"
+      ]
+    },
+    {
+      "id": "B",
+      "text": "用稀醋酸或硼酸中和一下再洗",
+      "result": "❌ 错误！酸碱中和反应会放热，可能造成二次热灼伤，加重损伤。而且中和剂本身也可能有刺激性。正确做法是直接用大量清水持续冲洗，不要尝试中和。",
+      "feedback_type": "danger",
+      "score_delta": -15,
+      "is_deadly": false,
+      "kb_ids": [
+        "KB-PHASE4-0311",
+        "KB-RECO-0416"
+      ],
+      "next_background": "A",
+      "next_svgs": [
+        "橙红色告警光晕",
+        "化学灼伤抽象警示符号"
+      ]
+    },
+    {
+      "id": "C",
+      "text": "先用纸巾擦掉再冲洗",
+      "result": "⚠️ 存在隐患。擦拭过程中会加重碱液对皮肤的腐蚀和扩散，同时擦拭动作本身可能造成皮肤表层损伤。应直接用大量流水冲洗。",
+      "feedback_type": "warning",
+      "score_delta": -5,
+      "is_deadly": false,
+      "kb_ids": [
+        "KB-RECO-0416"
+      ],
+      "next_background": "C",
+      "next_svgs": [
+        "化学灼伤抽象警示符号"
+      ]
+    }
+  ]
+}

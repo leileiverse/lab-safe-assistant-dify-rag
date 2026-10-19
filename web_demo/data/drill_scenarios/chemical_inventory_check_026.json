@@ -1,0 +1,64 @@
+{
+  "scenario_id": "chemical_inventory_check_026",
+  "title": "过期化学品怎么处理",
+  "category": "chemical",
+  "difficulty": "beginner",
+  "background": "A",
+  "overlay_svgs": [
+    "浓硫酸试剂瓶",
+    "废液桶"
+  ],
+  "narrative": "你在整理试剂柜时发现一瓶过了保质期的乙醚，瓶子里还有半瓶液体。你想直接倒进废液桶。",
+  "hint": "过期化学品能不能直接当废液倒掉？正确的流程是什么？",
+  "options": [
+    {
+      "id": "A",
+      "text": "登记上报，按学校/实验室危废处理流程交由有资质单位处置",
+      "result": "操作正确。过期化学品属于危险废物，必须按照危废管理规定处理：登记造册、分类存放、上报管理部门，交由具有危废处理资质的专业单位处置。个人不能随意倾倒，也不能与普通废液混放。",
+      "feedback_type": "correct",
+      "score_delta": 10,
+      "is_deadly": false,
+      "kb_ids": [
+        "KB-BLK-9177",
+        "WEB-004-001",
+        "WEB-004-002"
+      ],
+      "next_background": "A",
+      "next_svgs": []
+    },
+    {
+      "id": "B",
+      "text": "直接倒进有机废液桶",
+      "result": "存在隐患。过期化学品成分可能已经发生变化，乙醚过了保质期可能生成过氧化物，直接倒入废液桶有爆炸风险。过期化学品应单独登记、单独存放，经评估后按危废规范处置，不能简单混入普通废液。",
+      "feedback_type": "warning",
+      "score_delta": -8,
+      "is_deadly": false,
+      "kb_ids": [
+        "KB-BLK-9177",
+        "WEB-004-001",
+        "WEB-004-002"
+      ],
+      "next_background": "A",
+      "next_svgs": [
+        "橙红色告警光晕"
+      ]
+    },
+    {
+      "id": "C",
+      "text": "倒下水道冲掉，量不大没事",
+      "result": "严重违规！将化学品倒入下水道是严重违法行为，会造成水体污染、环境损害，还可能在管网中积聚形成危险环境。所有化学废液和过期化学品都必须分类收集、规范处置，严禁排入下水道。",
+      "feedback_type": "danger",
+      "score_delta": -15,
+      "is_deadly": false,
+      "kb_ids": [
+        "KB-BLK-9177",
+        "WEB-004-001",
+        "WEB-004-002"
+      ],
+      "next_background": "A",
+      "next_svgs": [
+        "橙红色告警光晕"
+      ]
+    }
+  ]
+}

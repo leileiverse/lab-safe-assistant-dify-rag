@@ -1,21 +1,13 @@
 import { useState, useCallback } from 'react';
 import { useAuth } from '../contexts/AuthContext';
-
-const COLORS = {
-  bg: '#0f172a',
-  card: '#1e293b',
-  text: '#f1f5f9',
-  text2: '#94a3b8',
-  cyan: '#06b6d4',
-  red: '#ef4444',
-  glow: 'rgba(6, 182, 212, 0.3)',
-};
+import Icon from '../components/Icon';
 
 export default function LoginPage() {
   const { login } = useAuth();
   const [input, setInput] = useState('');
   const [error, setError] = useState('');
   const [checking, setChecking] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const submit = useCallback(async () => {
     const pw = input.trim();
@@ -45,76 +37,58 @@ export default function LoginPage() {
   }, [input, login]);
 
   return (
-    <div
-      style={{
-        width: '100vw',
-        height: '100vh',
-        background: COLORS.bg,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}
-    >
-      <div
-        style={{
-          background: COLORS.card,
-          border: `1px solid ${COLORS.glow}`,
-          borderRadius: 16,
-          padding: '40px 36px',
-          width: 360,
-          boxShadow: `0 0 40px ${COLORS.glow}`,
-        }}
-      >
-        <div style={{ textAlign: 'center', marginBottom: 28 }}>
-          <div style={{ fontSize: 22, fontWeight: 700, color: COLORS.text, marginBottom: 6 }}>
-            实验室安全助手
-          </div>
-          <div style={{ fontSize: 13, color: COLORS.text2 }}>请输入访问密码</div>
+    <main className="login-page">
+      <div className="login-grid" aria-hidden="true" />
+      <div className="login-scanline" aria-hidden="true" />
+      <section className="login-intro" aria-label="平台介绍">
+        <div className="login-brand">
+          <div className="login-brand-mark"><Icon name="flask" size={26} stroke={1.8} /></div>
+          <div><strong>实验室安全小助手</strong><span>LAB SAFETY INTELLIGENCE</span></div>
         </div>
-
-        <input
-          type="password"
-          value={input}
-          onChange={(e) => { setInput(e.target.value); setError(''); }}
-          onKeyDown={(e) => { if (e.key === 'Enter') submit(); }}
-          placeholder="密码"
-          style={{
-            width: '100%',
-            padding: '12px 14px',
-            borderRadius: 8,
-            border: `1px solid ${error ? COLORS.red : COLORS.glow}`,
-            background: COLORS.bg,
-            color: COLORS.text,
-            fontSize: 14,
-            outline: 'none',
-            boxSizing: 'border-box',
-            marginBottom: error ? 8 : 16,
-          }}
-        />
-
-        {error && (
-          <div style={{ color: COLORS.red, fontSize: 13, marginBottom: 12, textAlign: 'center' }}>{error}</div>
-        )}
-
-        <button
-          onClick={submit}
-          disabled={checking}
-          style={{
-            width: '100%',
-            padding: '12px',
-            borderRadius: 8,
-            border: 'none',
-            background: COLORS.cyan,
-            color: COLORS.bg,
-            fontSize: 14,
-            fontWeight: 600,
-            cursor: checking ? 'not-allowed' : 'pointer',
-            opacity: checking ? 0.7 : 1,
-          }}
-        >
-          {checking ? '验证中...' : '进入系统'}
-        </button>
-      </div>
-    </div>
+        <div className="login-copy">
+          <p className="login-eyebrow"><span /> SAFETY OPERATIONS CENTER</p>
+          <h1>让每一次实验<br />都有可靠依据</h1>
+          <p>聚合安全规范、知识库与规则引擎，为实验室场景提供清晰、可追溯的安全建议。</p>
+        </div>
+        <div className="login-signal-list">
+          <div><Icon name="shield" size={16} /><span>规则校验与风险分级</span><b>ACTIVE</b></div>
+          <div><Icon name="database" size={16} /><span>本地知识库检索链路</span><b>READY</b></div>
+          <div><Icon name="activity" size={16} /><span>安全服务状态监测</span><b>ONLINE</b></div>
+        </div>
+      </section>
+      <section className="login-access" aria-label="系统登录">
+        <div className="login-card">
+          <div className="login-card-head">
+            <div className="login-lock"><Icon name="lock" size={18} /></div>
+            <div><p>身份验证</p><h2>进入安全工作台</h2></div>
+          </div>
+          <label className={`login-field ${error ? 'has-error' : ''}`}>
+            <span>访问密码</span>
+            <div className="login-input-wrap">
+              <Icon name="lock" size={16} />
+              <input
+                type={showPassword ? 'text' : 'password'}
+                value={input}
+                autoComplete="current-password"
+                onChange={(e) => { setInput(e.target.value); setError(''); }}
+                onKeyDown={(e) => { if (e.key === 'Enter') submit(); }}
+                placeholder="密码"
+                aria-describedby={error ? 'login-error' : undefined}
+              />
+              <button type="button" className="password-toggle" title={showPassword ? '隐藏密码' : '显示密码'} aria-label={showPassword ? '隐藏密码' : '显示密码'} onClick={() => setShowPassword((value) => !value)}>
+                <Icon name={showPassword ? 'eyeOff' : 'eye'} size={17} />
+              </button>
+            </div>
+          </label>
+          <div id="login-error" className={`login-error ${error ? 'visible' : ''}`} role="alert">{error}</div>
+          <button className="login-submit" onClick={submit} disabled={checking}>
+            <span>{checking ? '正在验证身份' : '进入系统'}</span>
+            {checking ? <span className="login-loader" /> : <Icon name="arrowRight" size={18} />}
+          </button>
+          <p className="login-notice"><Icon name="shield" size={13} /> 本次访问将由服务端进行安全校验</p>
+        </div>
+        <p className="login-footer">LABSAFE / SECURE ACCESS / 2026</p>
+      </section>
+    </main>
   );
 }

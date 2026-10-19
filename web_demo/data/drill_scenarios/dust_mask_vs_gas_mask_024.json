@@ -1,0 +1,62 @@
+{
+  "scenario_id": "dust_mask_vs_gas_mask_024",
+  "title": "粉尘环境戴什么口罩",
+  "category": "ppe",
+  "difficulty": "intermediate",
+  "background": "B",
+  "overlay_svgs": [
+    "护目镜",
+    "橡胶手套"
+  ],
+  "narrative": "你要做硅胶柱层析，会产生少量粉尘。实验室抽屉里有普通医用外科口罩、KN95 口罩和防毒面具。你拿不准该戴哪个。",
+  "hint": "不同类型口罩的防护对象和适用场景有什么区别？",
+  "options": [
+    {
+      "id": "A",
+      "text": "戴 KN95 / N95 级别的防尘口罩",
+      "result": "操作正确。粉尘防护应使用符合标准的防尘口罩，如 KN95、N95 或更高等级。这类口罩对非油性颗粒物过滤效率可达 95% 以上，能有效阻挡硅胶粉等固体粉尘吸入呼吸道。",
+      "feedback_type": "correct",
+      "score_delta": 10,
+      "is_deadly": false,
+      "kb_ids": [
+        "KB-GEN-4004",
+        "KB-GAP-8019",
+        "KB-BLK-9045"
+      ],
+      "next_background": "A",
+      "next_svgs": []
+    },
+    {
+      "id": "B",
+      "text": "戴普通医用外科口罩就行",
+      "result": "防护不足。医用外科口罩主要用于阻挡飞沫和大颗粒，对细粉尘的过滤效率有限，不能提供足够的呼吸防护。长期在粉尘环境中佩戴普通口罩会增加肺部损伤风险。粉尘作业应使用 KN95 及以上等级的防尘口罩。",
+      "feedback_type": "warning",
+      "score_delta": -6,
+      "is_deadly": false,
+      "kb_ids": [
+        "KB-GEN-4004",
+        "KB-GAP-8019",
+        "KB-BLK-9045"
+      ],
+      "next_background": "B",
+      "next_svgs": [
+        "橙红色告警光晕"
+      ]
+    },
+    {
+      "id": "C",
+      "text": "戴防毒面具效果最好",
+      "result": "防护等级不匹配。防毒面具主要用于防护有毒有害气体和蒸气，对于单纯粉尘环境属于\"过度防护\"，而且呼吸阻力大、佩戴不舒适。正确的做法是根据危害类型选择相应的防护用品：粉尘用防尘口罩，有毒气体用防毒面具。",
+      "feedback_type": "warning",
+      "score_delta": -3,
+      "is_deadly": false,
+      "kb_ids": [
+        "KB-GEN-4004",
+        "KB-GAP-8019",
+        "KB-BLK-9045"
+      ],
+      "next_background": "B",
+      "next_svgs": []
+    }
+  ]
+}

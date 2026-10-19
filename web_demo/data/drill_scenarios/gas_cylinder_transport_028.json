@@ -1,0 +1,65 @@
+{
+  "scenario_id": "gas_cylinder_transport_028",
+  "title": "气瓶怎么搬运",
+  "category": "chemical",
+  "difficulty": "beginner",
+  "background": "A",
+  "overlay_svgs": [
+    "橙红色告警光晕",
+    "化学灼伤抽象警示符号"
+  ],
+  "narrative": "你需要把一瓶氧气钢瓶从一楼搬到三楼实验室。瓶子挺重的，你想直接抱着走，反正距离不远。",
+  "hint": "气瓶搬运的正确方式是什么？能不能横着滚？",
+  "options": [
+    {
+      "id": "A",
+      "text": "使用气瓶专用推车搬运，戴好安全帽，竖直固定",
+      "result": "操作正确。气瓶必须使用专用气瓶推车搬运，搬运前戴好瓶帽（安全帽），气瓶竖直固定在车上，严禁横卧滚动、肩扛或直接用手抱。搬运时要轻装轻卸，严禁抛、滑、滚、碰。",
+      "feedback_type": "correct",
+      "score_delta": 10,
+      "is_deadly": false,
+      "kb_ids": [
+        "KB-PHASE4-0490",
+        "KB-BLK-9093",
+        "KB-EQUIP-10417"
+      ],
+      "next_background": "A",
+      "next_svgs": []
+    },
+    {
+      "id": "B",
+      "text": "横着在地上滚过去，省力气",
+      "result": "严重违规！气瓶绝对不能在地面上滚动。滚动会磨损瓶体、损坏阀门，还可能导致瓶内压力不稳。更危险的是，如果阀门被撞断，高压气体瞬间释放会使气瓶变成高速飞行的\"火箭\"，造成严重伤亡。",
+      "feedback_type": "danger",
+      "score_delta": -15,
+      "is_deadly": false,
+      "kb_ids": [
+        "KB-PHASE4-0490",
+        "KB-BLK-9093",
+        "KB-EQUIP-10417"
+      ],
+      "next_background": "A",
+      "next_svgs": [
+        "橙红色告警光晕",
+        "火苗"
+      ]
+    },
+    {
+      "id": "C",
+      "text": "两个人抬着走",
+      "result": "存在隐患。人工抬运气瓶不仅费力，而且不安全——一旦失手坠落，气瓶可能破裂或阀门受损。正确方式是使用气瓶推车，既省力又安全。",
+      "feedback_type": "warning",
+      "score_delta": -6,
+      "is_deadly": false,
+      "kb_ids": [
+        "KB-PHASE4-0490",
+        "KB-BLK-9093",
+        "KB-EQUIP-10417"
+      ],
+      "next_background": "A",
+      "next_svgs": [
+        "橙红色告警光晕"
+      ]
+    }
+  ]
+}

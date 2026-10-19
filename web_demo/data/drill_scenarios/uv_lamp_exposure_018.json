@@ -1,0 +1,65 @@
+{
+  "scenario_id": "uv_lamp_exposure_018",
+  "title": "紫外灯照射了眼睛",
+  "category": "emergency",
+  "difficulty": "intermediate",
+  "background": "A",
+  "overlay_svgs": [
+    "护目镜",
+    "化学灼伤抽象警示符号"
+  ],
+  "narrative": "你进超净台拿东西，忘记了紫外灯一直开着。大约一分钟后你觉得眼睛不舒服，好像进了沙子。几个小时后眼睛越来越痛，畏光流泪。",
+  "hint": "紫外线照射眼睛后第一时间应该做什么？揉眼睛会不会加重？",
+  "options": [
+    {
+      "id": "A",
+      "text": "立即远离紫外光源，闭眼休息，尽快就医",
+      "result": "操作正确。紫外线引起的光电性眼炎通常在照射后数小时发作，表现为剧痛、畏光、流泪。正确处理是立即脱离紫外源、闭眼休息、不要揉眼，及时到眼科就诊。一般 24-48 小时可恢复。",
+      "feedback_type": "correct",
+      "score_delta": 10,
+      "is_deadly": false,
+      "kb_ids": [
+        "KB-GAP-8034",
+        "KB-PHASE4-0446",
+        "KB-PHASE4-0706"
+      ],
+      "next_background": "A",
+      "next_svgs": []
+    },
+    {
+      "id": "B",
+      "text": "没事，点几滴眼药水揉一揉就好了",
+      "result": "严重错误！紫外线造成的角膜损伤绝对不能揉眼睛！揉眼会加重角膜上皮损伤，还可能引发感染。也不要自行乱用眼药水，应及时就医，在医生指导下用药。",
+      "feedback_type": "danger",
+      "score_delta": -12,
+      "is_deadly": false,
+      "kb_ids": [
+        "KB-GAP-8034",
+        "KB-PHASE4-0446",
+        "KB-PHASE4-0706"
+      ],
+      "next_background": "A",
+      "next_svgs": [
+        "橙红色告警光晕",
+        "化学灼伤抽象警示符号"
+      ]
+    },
+    {
+      "id": "C",
+      "text": "用冷水敷一下眼睛",
+      "result": "有一定缓解作用但不充分。冷敷可以暂时减轻疼痛和畏光症状，但不能替代医疗处理。光电性眼炎需要专业的眼科评估和治疗，冷敷只能作为就医前的临时缓解措施。",
+      "feedback_type": "warning",
+      "score_delta": -5,
+      "is_deadly": false,
+      "kb_ids": [
+        "KB-GAP-8034",
+        "KB-PHASE4-0446",
+        "KB-PHASE4-0706"
+      ],
+      "next_background": "A",
+      "next_svgs": [
+        "化学灼伤抽象警示符号"
+      ]
+    }
+  ]
+}

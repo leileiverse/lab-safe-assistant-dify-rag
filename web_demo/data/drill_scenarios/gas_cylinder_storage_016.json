@@ -1,0 +1,65 @@
+{
+  "scenario_id": "gas_cylinder_storage_016",
+  "title": "乙炔气瓶怎么放",
+  "category": "chemical",
+  "difficulty": "beginner",
+  "background": "A",
+  "overlay_svgs": [
+    "橙红色告警光晕",
+    "化学灼伤抽象警示符号"
+  ],
+  "narrative": "你刚领了一瓶乙炔气瓶回来，气瓶竖直立在墙角，还没固定。旁边就是常用的实验台和酒精灯。你想先忙手头实验，一会再固定。",
+  "hint": "气瓶存放最基本的安全要求是什么？",
+  "options": [
+    {
+      "id": "A",
+      "text": "先固定气瓶再做实验，使用气瓶架和铁链固定",
+      "result": "操作正确。压缩气瓶必须竖直固定存放和使用，使用气瓶架、链条或固定带防止倾倒。乙炔气瓶尤其不能横放，否则丙酮会随气体流出造成危险。固定是气瓶安全管理的第一道防线。",
+      "feedback_type": "correct",
+      "score_delta": 10,
+      "is_deadly": false,
+      "kb_ids": [
+        "KB-RECO-0031",
+        "WEB-007-007",
+        "KB-CORNELL-11056"
+      ],
+      "next_background": "A",
+      "next_svgs": []
+    },
+    {
+      "id": "B",
+      "text": "靠在墙角就行，反正只是放一会",
+      "result": "严重违规！气瓶没有固定是极高危操作。一旦倾倒，阀门可能被撞断，高压气体瞬间释放会将气瓶变成火箭弹，撞击产生的火花还可能引燃乙炔，造成爆炸和火灾。气瓶必须时刻固定。",
+      "feedback_type": "danger",
+      "score_delta": -15,
+      "is_deadly": false,
+      "kb_ids": [
+        "KB-RECO-0031",
+        "WEB-007-007",
+        "KB-CORNELL-11056"
+      ],
+      "next_background": "A",
+      "next_svgs": [
+        "橙红色告警光晕",
+        "火苗"
+      ]
+    },
+    {
+      "id": "C",
+      "text": "横放在地上更稳，不会倒",
+      "result": "存在隐患。气瓶横放不仅容易滚动造成阀门损坏，对于乙炔等溶解气体气瓶，横放会使溶剂丙酮随气体流出，影响气体纯度并增加危险。气瓶必须竖直存放和使用。",
+      "feedback_type": "warning",
+      "score_delta": -8,
+      "is_deadly": false,
+      "kb_ids": [
+        "KB-RECO-0031",
+        "WEB-007-007",
+        "KB-CORNELL-11056"
+      ],
+      "next_background": "A",
+      "next_svgs": [
+        "橙红色告警光晕"
+      ]
+    }
+  ]
+}

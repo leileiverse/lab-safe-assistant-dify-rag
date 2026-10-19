@@ -1,0 +1,65 @@
+{
+  "scenario_id": "chemical_transport_036",
+  "title": "搬运大瓶试剂",
+  "category": "chemical",
+  "difficulty": "beginner",
+  "background": "A",
+  "overlay_svgs": [
+    "浓硫酸试剂瓶",
+    "橙红色告警光晕"
+  ],
+  "narrative": "你需要把一瓶 2.5L 的浓硫酸从一楼搬到三楼。瓶子是玻璃的，挺沉。你想夹在胳膊底下抱着走。",
+  "hint": "搬运大瓶化学品的正确方式是什么？直接抱行吗？",
+  "options": [
+    {
+      "id": "A",
+      "text": "放在防腐蚀的试剂提篮或推车里搬运",
+      "result": "操作正确。搬运大容量化学品应使用专用的试剂提篮、防腐蚀托盘或推车，防止滑落和意外。玻璃瓶容易因温差或碰撞破裂，直接用手抱存在很大风险。搬运前应检查包装是否完好，标签是否清晰。",
+      "feedback_type": "correct",
+      "score_delta": 10,
+      "is_deadly": false,
+      "kb_ids": [
+        "KB-RECO-0242",
+        "WEB-004-005",
+        "WEB-004-006"
+      ],
+      "next_background": "A",
+      "next_svgs": []
+    },
+    {
+      "id": "B",
+      "text": "抱在怀里最稳",
+      "result": "严重隐患！抱着大瓶化学品走路非常危险。一旦滑倒、被绊或瓶子滑落，化学品会直接泼洒在身上，造成严重灼伤。而且手抱的姿势没有缓冲，瓶子也容易碰到门框或墙壁。",
+      "feedback_type": "danger",
+      "score_delta": -12,
+      "is_deadly": false,
+      "kb_ids": [
+        "KB-RECO-0242",
+        "WEB-004-005",
+        "WEB-004-006"
+      ],
+      "next_background": "A",
+      "next_svgs": [
+        "橙红色告警光晕",
+        "化学灼伤抽象警示符号"
+      ]
+    },
+    {
+      "id": "C",
+      "text": "提着瓶颈走",
+      "result": "存在隐患。提瓶颈搬运大瓶试剂容易因瓶口应力过大而断裂，尤其是大瓶、满瓶时重量集中在瓶颈处，风险很高。正确做法是一手托底一手扶瓶，或者使用专用提篮。",
+      "feedback_type": "warning",
+      "score_delta": -8,
+      "is_deadly": false,
+      "kb_ids": [
+        "KB-RECO-0242",
+        "WEB-004-005",
+        "WEB-004-006"
+      ],
+      "next_background": "A",
+      "next_svgs": [
+        "橙红色告警光晕"
+      ]
+    }
+  ]
+}

@@ -16,6 +16,12 @@ __pycache__/
 *$py.class
 *.so
 .Python
+# 虚拟环境（含 .dll/.lib 等大型二进制依赖，绝不入库）
+.venv/
+venv/
+env/
+ENV/
+site-packages/
 
 # Node.js
 node_modules/

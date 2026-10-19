@@ -1,0 +1,64 @@
+{
+  "scenario_id": "gas_regulator_039",
+  "title": "气瓶减压阀怎么开",
+  "category": "equipment",
+  "difficulty": "intermediate",
+  "background": "A",
+  "overlay_svgs": [
+    "橙红色告警光晕",
+    "化学灼伤抽象警示符号"
+  ],
+  "narrative": "你第一次用气，看着气瓶上的阀门和减压阀有点懵。总阀和减压阀都有，你不知道先开哪个。",
+  "hint": "气瓶开关的正确顺序是什么？先开总阀还是先调减压阀？",
+  "options": [
+    {
+      "id": "A",
+      "text": "先确认减压阀处于关闭状态（松开），再缓慢打开总阀，然后缓慢调节减压阀",
+      "result": "操作正确。标准的气瓶开阀顺序是：1. 确认减压阀调压手柄处于松开位置；2. 缓慢打开气瓶总阀（瓶头阀）；3. 观察高压表读数；4. 缓慢调节减压阀调压手柄至所需压力。这样可以避免高压气体瞬间冲击减压系统。关闭时顺序相反：先关总阀，再松减压阀。",
+      "feedback_type": "correct",
+      "score_delta": 10,
+      "is_deadly": false,
+      "kb_ids": [
+        "WEB-007-007",
+        "KB-CHEM2-0025",
+        "KB-CHEM2-0026"
+      ],
+      "next_background": "A",
+      "next_svgs": []
+    },
+    {
+      "id": "B",
+      "text": "先把减压阀拧开，再猛开总阀",
+      "result": "严重危险！减压阀处于打开状态时猛开总阀，高压气体会瞬间冲击减压阀和下游管路，可能造成减压阀损坏、管路脱落甚至仪表爆裂。开总阀必须缓慢进行，而且开总阀前减压阀必须处于关闭/松弛状态。",
+      "feedback_type": "danger",
+      "score_delta": -15,
+      "is_deadly": false,
+      "kb_ids": [
+        "WEB-007-007",
+        "KB-CHEM2-0025",
+        "KB-CHEM2-0026"
+      ],
+      "next_background": "A",
+      "next_svgs": [
+        "橙红色告警光晕"
+      ]
+    },
+    {
+      "id": "C",
+      "text": "两个都打开，让气直接冲出来最快",
+      "result": "极度危险！让高压气体直接冲入低压管路会造成严重事故：管路可能爆裂、接头可能脱落伤人、实验设备可能被吹飞甚至炸坏。减压阀的作用就是将高压安全地降到工作压力，绝不允许不通过减压阀直接用气。",
+      "feedback_type": "danger",
+      "score_delta": -18,
+      "is_deadly": true,
+      "kb_ids": [
+        "WEB-007-007",
+        "KB-CHEM2-0025",
+        "KB-CHEM2-0026"
+      ],
+      "next_background": "A",
+      "next_svgs": [
+        "橙红色告警光晕"
+      ]
+    }
+  ]
+}

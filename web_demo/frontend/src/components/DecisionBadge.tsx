@@ -9,6 +9,7 @@ export const DECISION_LABEL: Record<string, string> = {
   emergency_redirect: '紧急情况',
   need_more_info: '需要补充信息',
   structured_fallback: '兜底回答',
+  conversational_local: '会话响应',
 };
 
 const DECISION_ICON: Record<string, IconName> = {
@@ -19,6 +20,7 @@ const DECISION_ICON: Record<string, IconName> = {
   emergency_redirect: 'siren',
   need_more_info: 'question',
   structured_fallback: 'info',
+  conversational_local: 'sparkles',
 };
 
 interface Props {

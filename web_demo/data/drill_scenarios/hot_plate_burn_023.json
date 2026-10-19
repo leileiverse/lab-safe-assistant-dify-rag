@@ -1,0 +1,64 @@
+{
+  "scenario_id": "hot_plate_burn_023",
+  "title": "电热板烫伤",
+  "category": "equipment",
+  "difficulty": "beginner",
+  "background": "A",
+  "overlay_svgs": [
+    "烧杯",
+    "化学灼伤抽象警示符号"
+  ],
+  "narrative": "你在用加热板加热溶液时，伸手去拿旁边的烧杯，小臂蹭到了加热板边缘。立刻感到灼热疼痛，皮肤发红。",
+  "hint": "高温烫伤的第一时间处置是什么？要不要涂牙膏或者酱油？",
+  "options": [
+    {
+      "id": "A",
+      "text": "立即用流动冷水冲淋 15 分钟以上降温",
+      "result": "操作正确。热烫伤第一时间用大量流动冷水冲洗降温，持续 15-20 分钟或直到疼痛明显减轻。冷水可以迅速带走热量，减少深层组织损伤。冲洗后根据伤情决定是否就医，不要自行涂抹牙膏、酱油等。",
+      "feedback_type": "correct",
+      "score_delta": 10,
+      "is_deadly": false,
+      "kb_ids": [
+        "KB-1031",
+        "KB-RECO-0002",
+        "KB-RECO-0003"
+      ],
+      "next_background": "A",
+      "next_svgs": []
+    },
+    {
+      "id": "B",
+      "text": "涂点牙膏消肿止痛",
+      "result": "错误！烫伤后涂牙膏不仅没有治疗作用，还会阻碍热量散发，加重损伤，而且牙膏中的化学成分可能引起感染、增加清创难度。正确做法是冷水持续冲洗，不要涂任何未经医生建议的东西。",
+      "feedback_type": "danger",
+      "score_delta": -10,
+      "is_deadly": false,
+      "kb_ids": [
+        "KB-1031",
+        "KB-RECO-0002",
+        "KB-RECO-0003"
+      ],
+      "next_background": "A",
+      "next_svgs": [
+        "橙红色告警光晕"
+      ]
+    },
+    {
+      "id": "C",
+      "text": "把水泡挑破好得快",
+      "result": "存在隐患。烫伤形成的水泡是皮肤的天然保护层，挑破会增加感染风险。小水泡应保护好让其自然吸收；大水泡需要在无菌条件下由医护人员处理，不能自行挑破。",
+      "feedback_type": "warning",
+      "score_delta": -8,
+      "is_deadly": false,
+      "kb_ids": [
+        "KB-1031",
+        "KB-RECO-0002",
+        "KB-RECO-0003"
+      ],
+      "next_background": "A",
+      "next_svgs": [
+        "化学灼伤抽象警示符号"
+      ]
+    }
+  ]
+}
