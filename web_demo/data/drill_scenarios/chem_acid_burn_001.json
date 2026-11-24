@@ -1,0 +1,45 @@
+﻿{
+  "scenario_id": "chem_acid_burn_001",
+  "title": "浓硫酸溅到手上",
+  "category": "chemical",
+  "difficulty": "intermediate",
+  "background": "A",
+  "overlay_svgs": ["浓硫酸试剂瓶", "烧杯", "化学灼伤抽象警示符号"],
+  "narrative": "你正在操作台转移浓硫酸，不慎将少量浓硫酸溅到了左手手背上。皮肤立刻产生灼热刺痛感。",
+  "hint": "回忆一下化学灼伤的标准处置流程，第一时间应该做什么？",
+  "options": [
+    {
+      "id": "A",
+      "text": "立即用大量流动清水持续冲洗至少15分钟",
+      "result": "✅ 操作正确。浓硫酸与水接触虽会放热，但大量流动的清水能快速稀释并带走热量，这是化学灼伤的标准处置方法。冲洗时应脱去被污染的手套和衣物，持续冲洗15分钟以上，然后视情况就医。",
+      "feedback_type": "correct",
+      "score_delta": 10,
+      "is_deadly": false,
+      "kb_ids": ["KB-1041", "KB-RECO-0416", "KB-PHASE4-0685"],
+      "next_background": "C",
+      "next_svgs": ["化学灼伤抽象警示符号"]
+    },
+    {
+      "id": "B",
+      "text": "先用氢氧化钠溶液中和皮肤上的酸",
+      "result": "❌ 严重错误！酸碱中和反应会剧烈放热，造成二次热灼伤，加重皮肤损伤。绝对禁止用中和法处理皮肤上的化学灼伤！正确做法是立即用大量流动清水持续冲洗。",
+      "feedback_type": "danger",
+      "score_delta": -15,
+      "is_deadly": false,
+      "kb_ids": ["KB-1041", "KB-RECO-0416"],
+      "next_background": "A",
+      "next_svgs": ["橙红色告警光晕", "化学灼伤抽象警示符号"]
+    },
+    {
+      "id": "C",
+      "text": "先用抹布擦掉，再用水冲洗",
+      "result": "⚠️ 存在隐患。先擦拭的过程中，浓硫酸会在擦拭摩擦力作用下加重皮肤腐蚀，同时擦拭扩大了酸液与皮肤的接触面积。正确做法是直接用大量流动清水冲洗，水流本身就能稀释和冲掉酸液。",
+      "feedback_type": "warning",
+      "score_delta": -5,
+      "is_deadly": false,
+      "kb_ids": ["KB-RECO-0416"],
+      "next_background": "C",
+      "next_svgs": ["化学灼伤抽象警示符号"]
+    }
+  ]
+}

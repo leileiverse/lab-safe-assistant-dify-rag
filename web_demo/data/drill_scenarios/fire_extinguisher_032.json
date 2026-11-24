@@ -1,0 +1,65 @@
+{
+  "scenario_id": "fire_extinguisher_032",
+  "title": "有机溶剂着火了用什么灭",
+  "category": "emergency",
+  "difficulty": "intermediate",
+  "background": "A",
+  "overlay_svgs": [
+    "火苗",
+    "橙红色告警光晕"
+  ],
+  "narrative": "实验台上的丙酮着火了，火焰大约有脸盆那么大，旁边还有其他有机溶剂。墙上有几种灭火器，你不知道该用哪种。",
+  "hint": "有机溶剂火灾用什么灭火器？绝对不能用什么？",
+  "options": [
+    {
+      "id": "A",
+      "text": "用干粉或二氧化碳灭火器灭火",
+      "result": "操作正确。有机溶剂火灾属于 B 类火灾，应使用干粉灭火器、二氧化碳灭火器或灭火毯灭火。灭火时要对准火焰根部，由近及远扫射。小面积火灾也可以用灭火毯覆盖窒息灭火。",
+      "feedback_type": "correct",
+      "score_delta": 10,
+      "is_deadly": false,
+      "kb_ids": [
+        "KB-1032",
+        "KB-RECO-0020",
+        "KB-PHASE4-0460"
+      ],
+      "next_background": "A",
+      "next_svgs": []
+    },
+    {
+      "id": "B",
+      "text": "赶紧用水浇灭",
+      "result": "极度危险！绝对不能用水扑救有机溶剂火灾！大多数有机溶剂比水轻且不溶于水，用水扑救会使易燃液体漂浮在水面上随水流扩散，反而扩大火灾范围，可能造成更大灾难。这是实验室火灾处置的基本常识。",
+      "feedback_type": "danger",
+      "score_delta": -20,
+      "is_deadly": true,
+      "kb_ids": [
+        "KB-1032",
+        "KB-RECO-0020",
+        "KB-PHASE4-0460"
+      ],
+      "next_background": "A",
+      "next_svgs": [
+        "火苗",
+        "橙红色告警光晕"
+      ]
+    },
+    {
+      "id": "C",
+      "text": "用湿抹布盖一下试试",
+      "result": "不规范。对于非常小的火苗，湿抹布或灭火毯覆盖有一定效果，但对于\"脸盆大小\"的火焰，湿布作用有限，而且如果火势扩大反而延误最佳灭火时机。应第一时间使用灭火器。",
+      "feedback_type": "warning",
+      "score_delta": -5,
+      "is_deadly": false,
+      "kb_ids": [
+        "KB-1032",
+        "KB-RECO-0020",
+        "KB-PHASE4-0460"
+      ],
+      "next_background": "A",
+      "next_svgs": [
+        "橙红色告警光晕"
+      ]
+    }
+  ]
+}

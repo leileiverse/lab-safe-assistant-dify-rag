@@ -1,0 +1,64 @@
+{
+  "scenario_id": "labcoat_correct_wear_022",
+  "title": "实验服穿对了吗",
+  "category": "ppe",
+  "difficulty": "beginner",
+  "background": "B",
+  "overlay_svgs": [
+    "护目镜",
+    "橡胶手套"
+  ],
+  "narrative": "你准备进实验室，实验服的扣子只扣了下面两颗，袖子挽起来露出手腕。你觉得这样做事方便，而且只是取个试剂很快就出来。",
+  "hint": "实验服的正确穿法和作用是什么？为什么不能挽袖子？",
+  "options": [
+    {
+      "id": "A",
+      "text": "扣好全部扣子，放下袖子，穿戴整齐再进实验室",
+      "result": "操作正确。实验服是个人防护的重要组成部分，必须扣好全部扣子、袖子放下，这样才能最大程度阻挡化学品飞溅、微生物污染和明火灼伤。实验服的作用是阻隔和可拆卸，穿着不规范等于放弃了第一道防线。",
+      "feedback_type": "correct",
+      "score_delta": 10,
+      "is_deadly": false,
+      "kb_ids": [
+        "KB-RECO-0264",
+        "KB-PHASE4-0505",
+        "KB-BLK-9115"
+      ],
+      "next_background": "A",
+      "next_svgs": []
+    },
+    {
+      "id": "B",
+      "text": "只是进去拿个东西，很快就出来，无所谓",
+      "result": "存在隐患。实验室事故往往发生在\"只是进去一下\"的时候。别人打翻试剂、气瓶漏气、玻璃仪器突然炸裂都可能发生。进入实验室就应当按规范穿戴完整的个人防护装备，没有\"很快就出来\"的例外。",
+      "feedback_type": "warning",
+      "score_delta": -5,
+      "is_deadly": false,
+      "kb_ids": [
+        "KB-RECO-0264",
+        "KB-PHASE4-0505",
+        "KB-BLK-9115"
+      ],
+      "next_background": "B",
+      "next_svgs": [
+        "橙红色告警光晕"
+      ]
+    },
+    {
+      "id": "C",
+      "text": "实验服穿着去食堂吃饭也没关系",
+      "result": "严重错误！实验服只能在实验室穿，绝对不能穿去食堂、办公室等生活区域。实验服上可能沾染了化学品残留、微生物或其他污染物，穿出去会造成交叉污染，危害自己和他人健康。",
+      "feedback_type": "danger",
+      "score_delta": -10,
+      "is_deadly": false,
+      "kb_ids": [
+        "KB-RECO-0264",
+        "KB-PHASE4-0505",
+        "KB-BLK-9115"
+      ],
+      "next_background": "B",
+      "next_svgs": [
+        "橙红色告警光晕"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "scenario_id": "mercury_spill_020",
+  "title": "水银温度计碎了",
+  "category": "emergency",
+  "difficulty": "advanced",
+  "background": "A",
+  "overlay_svgs": [
+    "烧杯",
+    "橙红色告警光晕"
+  ],
+  "narrative": "你在测量馏分时不慎碰倒了一支水银温度计，玻璃碎了，汞珠散落在实验台和地面上，有好几颗还滚到了缝隙里。",
+  "hint": "汞泄漏绝对不能做什么？正确的收集和处理方式是什么？",
+  "options": [
+    {
+      "id": "A",
+      "text": "开窗通风，撤离无关人员，用硫磺粉或专用汞收集器处理",
+      "result": "操作正确。汞泄漏的正确处理是：立即开窗通风、疏散人员、关闭加热设备降低挥发；戴上手套，用硫磺粉、锌粉或专用汞收集装置将汞珠收集起来；缝隙中的汞可用胶带粘取；收集的汞按危险废物单独存放处理，严禁倒入下水道。",
+      "feedback_type": "correct",
+      "score_delta": 10,
+      "is_deadly": false,
+      "kb_ids": [
+        "KB-WASTE-10216",
+        "KB-RECO-0395",
+        "KB-PHASE4-0170"
+      ],
+      "next_background": "A",
+      "next_svgs": []
+    },
+    {
+      "id": "B",
+      "text": "用扫帚扫一下，倒进垃圾桶就完事了",
+      "result": "严重违规！扫帚扫水银会将汞珠打碎成更多小汞珠，增大表面积，加速汞蒸气挥发，造成室内汞污染。汞蒸气有剧毒，长期吸入会损伤神经系统。汞废物绝对不能当普通垃圾处理，必须按危险废物收集。",
+      "feedback_type": "danger",
+      "score_delta": -15,
+      "is_deadly": false,
+      "kb_ids": [
+        "KB-WASTE-10216",
+        "KB-RECO-0395",
+        "KB-PHASE4-0170"
+      ],
+      "next_background": "A",
+      "next_svgs": [
+        "橙红色告警光晕",
+        "化学灼伤抽象警示符号"
+      ]
+    },
+    {
+      "id": "C",
+      "text": "用吸尘器吸一下，吸得干净",
+      "result": "极度危险！绝对不能用吸尘器处理汞泄漏！吸尘器的气流会将汞吹成极细的气溶胶，大大增加汞的蒸发和扩散速度，使整个房间的汞蒸气浓度急剧升高，造成严重的室内空气污染。这是汞泄漏处理中最危险的操作之一。",
+      "feedback_type": "danger",
+      "score_delta": -18,
+      "is_deadly": false,
+      "kb_ids": [
+        "KB-WASTE-10216",
+        "KB-RECO-0395",
+        "KB-PHASE4-0170"
+      ],
+      "next_background": "A",
+      "next_svgs": [
+        "橙红色告警光晕"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "scenario_id": "vacuum_distillation_029",
+  "title": "减压蒸馏突然停电",
+  "category": "equipment",
+  "difficulty": "advanced",
+  "background": "A",
+  "overlay_svgs": [
+    "烧杯",
+    "橙红色告警光晕"
+  ],
+  "narrative": "你正在做减压蒸馏，蒸馏瓶里是有机溶剂。突然停电了，真空泵停了，系统里还是负压状态。你在想要不要先拆装置。",
+  "hint": "减压蒸馏突然中断时，第一步操作是什么？为什么不能马上拆？",
+  "options": [
+    {
+      "id": "A",
+      "text": "先通大气恢复常压，再停止加热，最后再拆装置",
+      "result": "操作正确。减压蒸馏突然中断时，必须先缓慢打开放空阀通大气，使系统恢复常压，然后才能停止加热和拆卸装置。如果先停加热再通大气，系统内负压可能将接收瓶中的液体倒吸回蒸馏瓶，造成污染或危险反应。",
+      "feedback_type": "correct",
+      "score_delta": 10,
+      "is_deadly": false,
+      "kb_ids": [
+        "KB-EQUIP-10403",
+        "KB-EQUIP-10406",
+        "KB-PHASE4-0674"
+      ],
+      "next_background": "A",
+      "next_svgs": []
+    },
+    {
+      "id": "B",
+      "text": "赶紧把装置拆开，防止出事",
+      "result": "严重错误！在系统仍处于负压状态时拆开装置，空气会迅速冲入，可能将有机溶剂蒸气带入整个实验室，形成爆炸性混合气体；同时空气与热的溶剂蒸气接触也可能引发氧化或着火。必须先通大气恢复常压再操作。",
+      "feedback_type": "danger",
+      "score_delta": -15,
+      "is_deadly": false,
+      "kb_ids": [
+        "KB-EQUIP-10403",
+        "KB-EQUIP-10406",
+        "KB-PHASE4-0674"
+      ],
+      "next_background": "A",
+      "next_svgs": [
+        "橙红色告警光晕",
+        "化学灼伤抽象警示符号"
+      ]
+    },
+    {
+      "id": "C",
+      "text": "等电来了继续做就行",
+      "result": "存在隐患。停电后系统状态已经改变，温度、真空度都不稳定。不能直接继续，应先通大气恢复常压，查明停电原因，待条件恢复后重新开始，而不是盲目等待。",
+      "feedback_type": "warning",
+      "score_delta": -5,
+      "is_deadly": false,
+      "kb_ids": [
+        "KB-EQUIP-10403",
+        "KB-EQUIP-10406",
+        "KB-PHASE4-0674"
+      ],
+      "next_background": "A",
+      "next_svgs": [
+        "橙红色告警光晕"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "scenario_id": "fume_hood_sash_height_025",
+  "title": "通风橱拉门高度",
+  "category": "equipment",
+  "difficulty": "beginner",
+  "background": "A",
+  "overlay_svgs": [
+    "烧杯",
+    "橙红色告警光晕"
+  ],
+  "narrative": "你在通风橱里做反应，因为要放一个比较高的烧瓶，你把通风橱前窗拉门一直推到最上面，几乎全开着。",
+  "hint": "通风橱拉门的安全高度是多少？拉得越高通风越好吗？",
+  "options": [
+    {
+      "id": "A",
+      "text": "拉门保持在安全操作高度以内（通常约 40-50cm 或标识线以下）",
+      "result": "操作正确。通风橱的拉门高度直接影响面风速和防护效果。拉门过高会导致面风速不足，有害气体可能逸出；拉门过低则不方便操作。应保持在设备标定的安全高度范围内，通常有明显的安全线标识。通风橱不是开得越大越安全。",
+      "feedback_type": "correct",
+      "score_delta": 10,
+      "is_deadly": false,
+      "kb_ids": [
+        "WEB-012-001",
+        "KB-CORNELL-11014",
+        "KB-CORNELL-11057"
+      ],
+      "next_background": "A",
+      "next_svgs": []
+    },
+    {
+      "id": "B",
+      "text": "拉得越高越通风，效果越好",
+      "result": "严重错误！这是常见误解。通风橱拉门过高时，开口面积增大，面风速下降，可能低于设计风速（通常 0.3-0.5 m/s），导致有毒气体不能有效排出，反而从开口处逸出到实验室中。拉门高度必须在安全范围内。",
+      "feedback_type": "danger",
+      "score_delta": -12,
+      "is_deadly": false,
+      "kb_ids": [
+        "WEB-012-001",
+        "KB-CORNELL-11014",
+        "KB-CORNELL-11057"
+      ],
+      "next_background": "A",
+      "next_svgs": [
+        "橙红色告警光晕"
+      ]
+    },
+    {
+      "id": "C",
+      "text": "操作时可以全开，人不在的时候拉下来",
+      "result": "存在隐患。实验进行中人员就在通风橱前，恰恰是最需要防护的时候。拉门全开时面风速不足，有毒蒸气会直接飘向操作者面部。操作时拉门必须保持在安全高度，既保护操作者又方便操作。",
+      "feedback_type": "warning",
+      "score_delta": -5,
+      "is_deadly": false,
+      "kb_ids": [
+        "WEB-012-001",
+        "KB-CORNELL-11014",
+        "KB-CORNELL-11057"
+      ],
+      "next_background": "A",
+      "next_svgs": [
+        "橙红色告警光晕"
+      ]
+    }
+  ]
+}

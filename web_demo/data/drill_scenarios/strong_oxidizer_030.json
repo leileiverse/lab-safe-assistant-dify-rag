@@ -1,0 +1,65 @@
+{
+  "scenario_id": "strong_oxidizer_030",
+  "title": "高锰酸钾和有机物放一起",
+  "category": "chemical",
+  "difficulty": "intermediate",
+  "background": "A",
+  "overlay_svgs": [
+    "浓硫酸试剂瓶",
+    "橙红色告警光晕"
+  ],
+  "narrative": "你在整理试剂柜，把刚买的高锰酸钾和乙醇、丙酮等有机溶剂放在了同一个柜子的同一层。你觉得都是常用试剂，放一起找起来方便。",
+  "hint": "强氧化剂和有机溶剂能放在一起吗？为什么？",
+  "options": [
+    {
+      "id": "A",
+      "text": "绝对不能放一起，强氧化剂和有机物必须分开存放",
+      "result": "操作正确。强氧化剂（如高锰酸钾、高氯酸、过氧化物等）与有机物、还原剂、易燃物混放是极大的安全隐患。一旦发生泄漏、倾倒或意外接触，会发生剧烈氧化反应，产生大量热量，可能引发燃烧甚至爆炸。必须按不相容化学品分类分柜存放。",
+      "feedback_type": "correct",
+      "score_delta": 10,
+      "is_deadly": false,
+      "kb_ids": [
+        "KB-MSDS-2006",
+        "KB-WASTE-10209",
+        "KB-WASTE-10211"
+      ],
+      "next_background": "A",
+      "next_svgs": []
+    },
+    {
+      "id": "B",
+      "text": "只要盖子拧紧就没事",
+      "result": "严重错误！拧紧瓶盖不能消除混存的风险。万一试剂瓶因温度变化、应力、地震等原因破裂，强氧化剂与有机物接触会立即发生剧烈反应，引发火灾或爆炸。不相容化学品必须物理隔离存放，这是红线规定。",
+      "feedback_type": "danger",
+      "score_delta": -15,
+      "is_deadly": false,
+      "kb_ids": [
+        "KB-MSDS-2006",
+        "KB-WASTE-10209",
+        "KB-WASTE-10211"
+      ],
+      "next_background": "A",
+      "next_svgs": [
+        "火苗",
+        "橙红色告警光晕"
+      ]
+    },
+    {
+      "id": "C",
+      "text": "放不同层就行",
+      "result": "存在隐患。同一柜不同层也不安全。上层液体泄漏会直接滴到下层，导致氧化剂与有机物接触。强氧化剂和易燃有机物必须存放在不同的专用储存柜中，严格物理隔离。",
+      "feedback_type": "warning",
+      "score_delta": -8,
+      "is_deadly": false,
+      "kb_ids": [
+        "KB-MSDS-2006",
+        "KB-WASTE-10209",
+        "KB-WASTE-10211"
+      ],
+      "next_background": "A",
+      "next_svgs": [
+        "橙红色告警光晕"
+      ]
+    }
+  ]
+}

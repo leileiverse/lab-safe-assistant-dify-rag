@@ -1,0 +1,60 @@
+{
+  "scenario_id": "waste_broken_glass_014",
+  "title": "碎玻璃怎么处理",
+  "category": "waste",
+  "difficulty": "beginner",
+  "background": "A",
+  "overlay_svgs": [
+    "废液桶"
+  ],
+  "narrative": "你不小心打碎了一个烧杯，玻璃碎片散落在台面上和地面上。你准备怎么处理这些碎片？",
+  "hint": "碎玻璃不是普通垃圾，处理不当很容易割伤人，包括收拾垃圾的清洁人员。",
+  "options": [
+    {
+      "id": "A",
+      "text": "用扫帚和簸箕收集，放入专用锐器盒",
+      "result": "✅ 正确。碎玻璃属于锐器类实验室废弃物，不能直接丢入普通垃圾桶。应使用扫帚和簸箕（或镊子）收集，放入专用的锐器收集盒/玻璃废弃物容器中，贴好标识，由专门渠道处置。",
+      "feedback_type": "correct",
+      "score_delta": 10,
+      "is_deadly": false,
+      "kb_ids": [
+        "KB-GAP-8015",
+        "KB-BLK-9013"
+      ],
+      "next_background": "A",
+      "next_svgs": []
+    },
+    {
+      "id": "B",
+      "text": "用手捡起来丢垃圾桶",
+      "result": "❌ 极度危险！徒手捡拾碎玻璃极易造成割伤，而且如果是装过化学品的玻璃器皿，伤口还可能被化学品污染。绝对不能用手直接捡碎玻璃！",
+      "feedback_type": "danger",
+      "score_delta": -15,
+      "is_deadly": false,
+      "kb_ids": [
+        "KB-GAP-8015",
+        "KB-BLK-9013"
+      ],
+      "next_background": "A",
+      "next_svgs": [
+        "橙红色告警光晕",
+        "化学灼伤抽象警示符号"
+      ]
+    },
+    {
+      "id": "C",
+      "text": "扫进普通垃圾桶就行",
+      "result": "⚠️ 违规。碎玻璃放入普通垃圾桶可能会割伤后续处理垃圾的清洁人员或保洁工。必须放入专用的锐器收集容器中，并做好明显标识。",
+      "feedback_type": "warning",
+      "score_delta": -8,
+      "is_deadly": false,
+      "kb_ids": [
+        "KB-GAP-8015"
+      ],
+      "next_background": "A",
+      "next_svgs": [
+        "橙红色告警光晕"
+      ]
+    }
+  ]
+}

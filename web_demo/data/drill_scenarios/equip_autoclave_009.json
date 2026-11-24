@@ -1,0 +1,59 @@
+{
+  "scenario_id": "equip_autoclave_009",
+  "title": "灭菌锅没压完强行开门",
+  "category": "equipment",
+  "difficulty": "intermediate",
+  "background": "A",
+  "overlay_svgs": [
+    "橙红色告警光晕"
+  ],
+  "narrative": "高压灭菌锅灭菌程序刚结束，压力表显示还有一点压力。你赶时间想早点拿东西出来。",
+  "hint": "高压灭菌锅的操作有严格的安全规范，什么时候才能开盖？",
+  "options": [
+    {
+      "id": "A",
+      "text": "等压力归零、温度降到安全值后再缓慢开盖",
+      "result": "✅ 正确。高压灭菌锅有压力时严禁强行开门！必须等压力自然降为零、温度降至80℃以下后，人站在侧面（防烫伤）缓慢开盖。这是高压灭菌锅最基本的安全红线。",
+      "feedback_type": "correct",
+      "score_delta": 10,
+      "is_deadly": false,
+      "kb_ids": [
+        "KB-1030",
+        "KB-RECO-0382"
+      ],
+      "next_background": "A",
+      "next_svgs": []
+    },
+    {
+      "id": "B",
+      "text": "手动放气泄压，压力下来就开门",
+      "result": "⚠️ 非常危险。快速放气会导致锅内液体剧烈沸腾喷出，可能造成严重烫伤。而且即使压力表显示压力为零，锅内温度仍然很高，开盖瞬间的蒸汽也能伤人。必须自然降温后再开。",
+      "feedback_type": "warning",
+      "score_delta": -10,
+      "is_deadly": false,
+      "kb_ids": [
+        "KB-1030"
+      ],
+      "next_background": "A",
+      "next_svgs": [
+        "橙红色告警光晕"
+      ]
+    },
+    {
+      "id": "C",
+      "text": "有压力时撬开门快点取东西",
+      "result": "❌ 极度危险！带压强行开启高压灭菌锅可能导致锅内高温高压蒸汽瞬间喷出，造成严重烫伤甚至爆炸事故。历史上有多起高压灭菌锅强行开门导致的重伤事故。绝对禁止！",
+      "feedback_type": "danger",
+      "score_delta": -15,
+      "is_deadly": false,
+      "kb_ids": [
+        "KB-1030"
+      ],
+      "next_background": "A",
+      "next_svgs": [
+        "橙红色告警光晕",
+        "化学灼伤抽象警示符号"
+      ]
+    }
+  ]
+}

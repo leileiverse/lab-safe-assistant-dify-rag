@@ -1,0 +1,61 @@
+{
+  "scenario_id": "emergency_large_spill_011",
+  "title": "大量化学品泄漏",
+  "category": "emergency",
+  "difficulty": "advanced",
+  "background": "A",
+  "overlay_svgs": [
+    "浓硫酸试剂瓶",
+    "橙红色告警光晕"
+  ],
+  "narrative": "试剂架上一瓶 2.5L 浓硫酸滑落摔碎，整瓶酸液泼洒在地面和台面上，酸雾开始弥漫。旁边还有几瓶其他化学品。",
+  "hint": "大量化学品泄漏和小量溅出的处置流程完全不同，第一步做什么？",
+  "options": [
+    {
+      "id": "A",
+      "text": "立即撤离并报告，由专业人员处理",
+      "result": "✅ 正确。大量化学品泄漏（超过 500mL 或高毒/强腐蚀性）时，非专业人员不应自行处理。应立即撤离现场，设置警戒，报告实验室管理员和 EHS 部门，由受过培训的专业人员穿戴防护装备进行处置。",
+      "feedback_type": "correct",
+      "score_delta": 10,
+      "is_deadly": false,
+      "kb_ids": [
+        "KB-1041",
+        "KB-RECO-0416"
+      ],
+      "next_background": "A",
+      "next_svgs": []
+    },
+    {
+      "id": "B",
+      "text": "勇敢点，自己拿吸附材料处理",
+      "result": "⚠️ 非常危险。大量强酸泄漏会产生大量酸雾，没有专业防护装备（防毒面具、防化服、防护靴）的情况下自行处理，可能导致吸入酸雾、皮肤灼伤等多重伤害。大量泄漏应撤离并呼叫专业人员。",
+      "feedback_type": "warning",
+      "score_delta": -10,
+      "is_deadly": false,
+      "kb_ids": [
+        "KB-1041"
+      ],
+      "next_background": "A",
+      "next_svgs": [
+        "橙红色告警光晕"
+      ]
+    },
+    {
+      "id": "C",
+      "text": "先把旁边的其他试剂搬走",
+      "result": "❌ 危险操作。在泄漏未得到控制的情况下进入现场搬运其他物品，既增加了自身暴露风险，也可能因操作不慎碰倒更多化学品。正确做法是先撤离、再报告。",
+      "feedback_type": "danger",
+      "score_delta": -12,
+      "is_deadly": false,
+      "kb_ids": [
+        "KB-1041",
+        "KB-RECO-0416"
+      ],
+      "next_background": "A",
+      "next_svgs": [
+        "橙红色告警光晕",
+        "化学灼伤抽象警示符号"
+      ]
+    }
+  ]
+}

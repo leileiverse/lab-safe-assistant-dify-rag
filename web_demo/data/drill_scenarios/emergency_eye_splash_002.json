@@ -1,0 +1,45 @@
+﻿{
+  "scenario_id": "emergency_eye_splash_002",
+  "title": "化学品溅入眼睛",
+  "category": "emergency",
+  "difficulty": "intermediate",
+  "background": "A",
+  "overlay_svgs": ["护目镜", "烧杯", "化学灼伤抽象警示符号"],
+  "narrative": "你正在配制溶液时，不慎将一滴碱液溅入了右眼。眼睛有强烈的刺痛感，本能地想闭眼揉一下。",
+  "hint": "眼部化学灼伤的黄金处置时间非常短，你应该立刻做什么？",
+  "options": [
+    {
+      "id": "A",
+      "text": "立即用洗眼器或大量清水持续冲洗眼睛至少15分钟",
+      "result": "✅ 操作正确。眼部化学灼伤必须争分夺秒，立即用洗眼器或大量流动清水持续冲洗。冲洗时要翻开眼睑，确保眼球各部位都被冲洗到，持续至少15分钟，然后尽快就医。切勿揉眼！",
+      "feedback_type": "correct",
+      "score_delta": 10,
+      "is_deadly": false,
+      "kb_ids": ["KB-1037", "KB-PHASE4-0685"],
+      "next_background": "C",
+      "next_svgs": ["护目镜"]
+    },
+    {
+      "id": "B",
+      "text": "先用手揉一揉，擦擦眼泪再看情况",
+      "result": "❌ 严重错误！揉眼会加重角膜和结膜的机械性损伤，还会让化学品扩散到更大面积。化学品入眼后绝对禁止揉眼，必须立即冲洗！",
+      "feedback_type": "danger",
+      "score_delta": -15,
+      "is_deadly": false,
+      "kb_ids": ["KB-1037"],
+      "next_background": "A",
+      "next_svgs": ["橙红色告警光晕", "化学灼伤抽象警示符号"]
+    },
+    {
+      "id": "C",
+      "text": "先找同事帮忙看看伤得重不重",
+      "result": "⚠️ 严重延误。眼部化学灼伤的处置越早越好，每多等一分钟，损伤就加深一层。不要找人围观，第一时间自己冲水洗眼，冲洗后再就医。",
+      "feedback_type": "warning",
+      "score_delta": -8,
+      "is_deadly": false,
+      "kb_ids": ["KB-1037"],
+      "next_background": "C",
+      "next_svgs": ["化学灼伤抽象警示符号"]
+    }
+  ]
+}

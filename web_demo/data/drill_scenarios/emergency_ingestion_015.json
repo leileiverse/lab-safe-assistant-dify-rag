@@ -1,0 +1,59 @@
+{
+  "scenario_id": "emergency_ingestion_015",
+  "title": "误食化学品",
+  "category": "emergency",
+  "difficulty": "intermediate",
+  "background": "A",
+  "overlay_svgs": [
+    "烧杯",
+    "化学灼伤抽象警示符号"
+  ],
+  "narrative": "你的同学实验时随手把装着无色液体的烧杯放到嘴边抿了一口——他以为是水，结果喝下去发现不对，可能是某种试剂。他现在很慌张。",
+  "hint": "误食化学品后的第一时间应该怎么做？哪些做法是错误的？",
+  "options": [
+    {
+      "id": "A",
+      "text": "立即漱口，保留化学品样本，尽快就医",
+      "result": "✅ 正确。误食化学品后应立即用清水漱口，但不要催吐（除非专业人员指导）。保留好误食的化学品样本和容器（供医生参考），尽快送往医院，并告知医生具体化学品名称和摄入量。",
+      "feedback_type": "correct",
+      "score_delta": 10,
+      "is_deadly": false,
+      "kb_ids": [
+        "KB-1015"
+      ],
+      "next_background": "A",
+      "next_svgs": []
+    },
+    {
+      "id": "B",
+      "text": "赶紧催吐，吐出来就没事了",
+      "result": "❌ 错误且危险。误食腐蚀性化学品后催吐会造成二次伤害——食道和口腔会被腐蚀两次。有些化学品吸入呕吐物还可能导致吸入性肺炎。是否催吐应由专业医生判断，不要自行操作。",
+      "feedback_type": "danger",
+      "score_delta": -15,
+      "is_deadly": false,
+      "kb_ids": [
+        "KB-1015"
+      ],
+      "next_background": "A",
+      "next_svgs": [
+        "橙红色告警光晕",
+        "化学灼伤抽象警示符号"
+      ]
+    },
+    {
+      "id": "C",
+      "text": "喝大量牛奶中和一下",
+      "result": "⚠️ 不能作为第一选择。喝牛奶或蛋清在某些情况下可以起到一定的保护胃黏膜作用，但不能替代就医，而且如果是腐蚀性强的化学品，可能并不适用。第一时间应该是漱口、保留样本、就医。",
+      "feedback_type": "warning",
+      "score_delta": -5,
+      "is_deadly": false,
+      "kb_ids": [
+        "KB-1015"
+      ],
+      "next_background": "A",
+      "next_svgs": [
+        "化学灼伤抽象警示符号"
+      ]
+    }
+  ]
+}

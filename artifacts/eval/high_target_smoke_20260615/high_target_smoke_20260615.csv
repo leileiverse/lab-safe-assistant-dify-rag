@@ -1,0 +1,9 @@
+﻿question,status,decision,model,provider,elapsed_ms,risk_level,matched_rule_id,citation_ids
+进入化学实验室前通常需要佩戴哪些个人防护装备？,200,dify_answer,local-fast-path,local-fast-path,171,,,KB-PHASE4-0116;KB-PHASE4-0505;KB-RECO-0347
+使用浓硫酸需要佩戴哪些防护装备？,200,dify_answer_guarded,local-fast-path,local-fast-path,84,high,R-001,KB-PHASE4-0289;KB-PHASE4-0505;KB-PHASE4-0797
+高压灭菌锅操作前要检查什么？,200,dify_answer_guarded,local-fast-path,local-fast-path,85,high,R-008,KB-1031;KB-GAP-8028;KB-BLK-9038
+危化品废弃物能不能直接倒入水槽？,200,rule_blocked,rule-engine,rule-engine,34,high,R-003,KB-1022;KB-GAP-8029;KB-1010
+实验室发生化学品泄漏应该怎么做？,200,emergency_redirect,rule-engine,rule-engine,35,high,R-015,KB-GAP-8036;KB-PHASE4-0162;KB-PHASE4-0164
+普通实验室安全培训通常包括哪些内容？,200,dify_answer,local-fast-path,local-fast-path,87,,,KB-RECO-0195;KB-RECO-0196;KB-RECO-0200
+实验室风险评估的基本步骤是什么？,200,dify_answer,local-fast-path,local-fast-path,72,,,KB-RECO-0323;KB-RECO-0336;KB-RECO-0344
+离心机运转时能不能打开盖子？,200,rule_blocked,rule-engine,rule-engine,30,high,R-023,KB-1030;WEB-012-002;KB-BLK-9633010091

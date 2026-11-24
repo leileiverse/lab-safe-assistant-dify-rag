@@ -1,0 +1,25 @@
+﻿/* 安全闯关导航按钮 */
+.drill-nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  background: linear-gradient(135deg, #0EA5A0, #0F766E);
+  border: none;
+  border-radius: 999px;
+  color: white;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.drill-nav-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(14, 165, 160, 0.35);
+}
+
+.drill-nav-btn:active {
+  transform: translateY(0);
+}

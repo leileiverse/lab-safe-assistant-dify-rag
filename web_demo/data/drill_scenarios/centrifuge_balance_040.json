@@ -1,0 +1,64 @@
+{
+  "scenario_id": "centrifuge_balance_040",
+  "title": "离心机差一点平衡",
+  "category": "equipment",
+  "difficulty": "beginner",
+  "background": "A",
+  "overlay_svgs": [
+    "量筒",
+    "橙红色告警光晕"
+  ],
+  "narrative": "你要离心 6 管样品，但发现有一管比对面那管重了 2 克，差得不太多。你想就差这点应该没事，懒得重新配平了。",
+  "hint": "离心机不平衡运行会有什么后果？差几克没事吗？",
+  "options": [
+    {
+      "id": "A",
+      "text": "必须精确配平，对称放置，重量差不能超过厂家规定",
+      "result": "操作正确。离心机高速旋转时不平衡会产生巨大的离心力振动，轻则损坏转子和电机，重则转子飞出造成机毁人亡的严重事故。配平是离心机操作的铁律，必须对称放置、精确配平，误差应控制在仪器允许范围内（通常 0.1-0.5g）。",
+      "feedback_type": "correct",
+      "score_delta": 10,
+      "is_deadly": false,
+      "kb_ids": [
+        "KB-1030",
+        "KB-EQUIP-10412",
+        "KB-RECO-0161"
+      ],
+      "next_background": "A",
+      "next_svgs": []
+    },
+    {
+      "id": "B",
+      "text": "差几克而已，问题不大",
+      "result": "严重错误！离心机转速通常达到几千甚至上万转，微小的不平衡在高速下会被放大成巨大的振动和应力。轻则缩短转子寿命、损坏轴承，重则转子解体飞出，造成严重伤亡。离心机配平不是\"差不多就行\"的事。",
+      "feedback_type": "danger",
+      "score_delta": -15,
+      "is_deadly": false,
+      "kb_ids": [
+        "KB-1030",
+        "KB-EQUIP-10412",
+        "KB-RECO-0161"
+      ],
+      "next_background": "A",
+      "next_svgs": [
+        "橙红色告警光晕"
+      ]
+    },
+    {
+      "id": "C",
+      "text": "开慢点就行",
+      "result": "存在隐患。降低转速并不能消除不平衡带来的风险，只是程度有所减轻。而且很多离心机在低速时振动反而更明显。不平衡的转子无论转速高低都是安全隐患。必须严格配平。",
+      "feedback_type": "warning",
+      "score_delta": -6,
+      "is_deadly": false,
+      "kb_ids": [
+        "KB-1030",
+        "KB-EQUIP-10412",
+        "KB-RECO-0161"
+      ],
+      "next_background": "A",
+      "next_svgs": [
+        "橙红色告警光晕"
+      ]
+    }
+  ]
+}

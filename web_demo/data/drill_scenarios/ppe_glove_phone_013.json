@@ -1,0 +1,58 @@
+{
+  "scenario_id": "ppe_glove_phone_013",
+  "title": "戴手套能碰手机吗",
+  "category": "ppe",
+  "difficulty": "beginner",
+  "background": "A",
+  "overlay_svgs": [
+    "橡胶手套"
+  ],
+  "narrative": "你戴着手套正在做实验，突然手机响了，是导师打来的电话。你犹豫要不要接。",
+  "hint": "戴着手套碰手机、门把手、电梯按钮这些公共物品，有什么问题？",
+  "options": [
+    {
+      "id": "A",
+      "text": "摘手套再接，避免污染公共物品",
+      "result": "✅ 正确。戴了实验手套的手不能触碰公共区域物品（手机、门把手、电梯按钮、水杯等），否则会将实验室的化学污染带到生活区域，造成交叉污染。接电话前必须先脱掉手套，洗手后再用手机。",
+      "feedback_type": "correct",
+      "score_delta": 10,
+      "is_deadly": false,
+      "kb_ids": [
+        "KB-GAP-8020",
+        "KB-GAP-8015"
+      ],
+      "next_background": "A",
+      "next_svgs": []
+    },
+    {
+      "id": "B",
+      "text": "就接一下，很快没事",
+      "result": "❌ 危险习惯。手套上可能沾有化学品残留，触碰手机后，手机就被污染了，之后你不戴手套时拿手机、甚至吃饭时拿手机，都可能间接摄入有害物质。积少成多，慢性暴露同样有害。",
+      "feedback_type": "danger",
+      "score_delta": -10,
+      "is_deadly": false,
+      "kb_ids": [
+        "KB-GAP-8020"
+      ],
+      "next_background": "A",
+      "next_svgs": [
+        "橙红色告警光晕"
+      ]
+    },
+    {
+      "id": "C",
+      "text": "戴手套开门应该没问题吧",
+      "result": "⚠️ 同样是交叉污染。门把手是公共接触面，戴实验手套开门会把污染带到公共区域。正确做法是：离开实验区前脱掉手套、洗手；戴手套开门只在紧急情况下可以，平时应避免。",
+      "feedback_type": "warning",
+      "score_delta": -6,
+      "is_deadly": false,
+      "kb_ids": [
+        "KB-GAP-8020"
+      ],
+      "next_background": "A",
+      "next_svgs": [
+        "橙红色告警光晕"
+      ]
+    }
+  ]
+}

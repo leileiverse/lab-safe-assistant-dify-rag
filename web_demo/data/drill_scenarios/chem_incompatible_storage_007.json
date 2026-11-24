@@ -1,0 +1,62 @@
+{
+  "scenario_id": "chem_incompatible_storage_007",
+  "title": "硝酸和乙醇能不能放一起",
+  "category": "chemical",
+  "difficulty": "beginner",
+  "background": "A",
+  "overlay_svgs": [
+    "浓硫酸试剂瓶",
+    "烧杯",
+    "橙红色告警光晕"
+  ],
+  "narrative": "你在整理试剂柜，一瓶浓硝酸和一瓶无水乙醇刚好拿在手里。柜子里还有空位，你想把它们放在同一层。",
+  "hint": "不同危险类别化学品的储存有严格规定，这两个能放一起吗？",
+  "options": [
+    {
+      "id": "A",
+      "text": "不能，氧化剂和易燃液体必须分开储存",
+      "result": "✅ 正确。硝酸属于强氧化剂，乙醇属于易燃液体，二者混放可能因意外泄漏发生剧烈氧化反应甚至燃烧爆炸。必须按不相容化学品分类，在不同储存区域分开存放。",
+      "feedback_type": "correct",
+      "score_delta": 10,
+      "is_deadly": false,
+      "kb_ids": [
+        "KB-1002",
+        "KB-1041"
+      ],
+      "next_background": "A",
+      "next_svgs": []
+    },
+    {
+      "id": "B",
+      "text": "可以，只要瓶子盖紧了就没事",
+      "result": "❌ 严重错误！盖紧瓶盖不能消除混放的风险。万一发生泄漏、倾倒或容器破损，氧化剂与易燃液体接触会立即发生危险反应。不相容化学品必须物理隔离存放，这是红线规定。",
+      "feedback_type": "danger",
+      "score_delta": -15,
+      "is_deadly": false,
+      "kb_ids": [
+        "KB-1002",
+        "KB-1041"
+      ],
+      "next_background": "A",
+      "next_svgs": [
+        "橙红色告警光晕",
+        "火苗"
+      ]
+    },
+    {
+      "id": "C",
+      "text": "放不同层就行，同一柜子没事",
+      "result": "⚠️ 仍有风险。同一柜体不同层并不能保证安全，因为上层液体泄漏会直接滴到下层。氧化剂和易燃液体应分别存放在不同的专用储存柜中（氧化剂柜 + 易燃品防火柜）。",
+      "feedback_type": "warning",
+      "score_delta": -8,
+      "is_deadly": false,
+      "kb_ids": [
+        "KB-1002"
+      ],
+      "next_background": "A",
+      "next_svgs": [
+        "橙红色告警光晕"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "scenario_id": "liquid_nitrogen_frostbite_017",
+  "title": "液氮冻伤手",
+  "category": "chemical",
+  "difficulty": "intermediate",
+  "background": "A",
+  "overlay_svgs": [
+    "烧杯",
+    "化学灼伤抽象警示符号"
+  ],
+  "narrative": "你在给液氮罐补充液氮时，不小心有几滴滴到了没有戴手套的手背上。一开始凉凉的，几秒后开始刺痛。",
+  "hint": "低温冻伤的第一时间处置是什么？和化学灼伤一样吗？",
+  "options": [
+    {
+      "id": "A",
+      "text": "立即将冻伤部位浸入 37-40℃ 的温水中复温",
+      "result": "操作正确。低温冻伤的标准处置是尽快用 37-40℃ 的温水缓慢复温。不要用热水或火烤，温度骤升会加重组织损伤。复温后保持创面清洁，视情况就医。",
+      "feedback_type": "correct",
+      "score_delta": 10,
+      "is_deadly": false,
+      "kb_ids": [
+        "KB-EQUIP-10419",
+        "KB-RECO-0035",
+        "KB-RECO-0039"
+      ],
+      "next_background": "A",
+      "next_svgs": []
+    },
+    {
+      "id": "B",
+      "text": "用手搓一搓，或者用火烤一烤让它快点暖过来",
+      "result": "严重错误！冻伤后揉搓或直接用火烤/热水烫会严重加重组织损伤。冻伤时组织脆弱，揉搓会造成机械性损伤；高温快速复温会引起温度休克。只能用 37-40℃ 温水缓慢复温。",
+      "feedback_type": "danger",
+      "score_delta": -12,
+      "is_deadly": false,
+      "kb_ids": [
+        "KB-EQUIP-10419",
+        "KB-RECO-0035",
+        "KB-RECO-0039"
+      ],
+      "next_background": "A",
+      "next_svgs": [
+        "橙红色告警光晕",
+        "化学灼伤抽象警示符号"
+      ]
+    },
+    {
+      "id": "C",
+      "text": "没事，过一会儿就好了",
+      "result": "存在隐患。液氮温度为 -196℃，即使短暂接触也可能造成深度冻伤，而且冻伤的感觉往往滞后。不能凭\"感觉不严重\"就忽视，应立即按低温冻伤标准处置。",
+      "feedback_type": "warning",
+      "score_delta": -5,
+      "is_deadly": false,
+      "kb_ids": [
+        "KB-EQUIP-10419",
+        "KB-RECO-0035",
+        "KB-RECO-0039"
+      ],
+      "next_background": "A",
+      "next_svgs": [
+        "化学灼伤抽象警示符号"
+      ]
+    }
+  ]
+}

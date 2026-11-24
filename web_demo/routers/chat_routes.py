@@ -23,7 +23,7 @@ from ..services import (
     build_fallback_lab_answer, resolve_dify_api_base, build_dify_proxy_auth,
     get_or_create, set_conversation_id, add_history, get_cached_answer, set_cached_answer,
     select_fast_path_citations, build_fast_path_answer, use_local_complete_response,
-    _build_out_of_scope_answer,
+    _build_out_of_scope_answer, build_conversational_answer,
 )
 from ..services.auth_service import verify_password
 from ..services.kb_usage_service import record_kb_usage
@@ -186,6 +186,32 @@ def chat(payload: ChatRequest) -> ChatResponse:
         "upstream_ms": 0,
         "cache_hit": False,
     }
+
+    # Standalone greetings and product questions have no KB relevance signal.
+    # Resolve them before retrieval so they cannot be mistaken for an unrelated
+    # safety query. Any message containing a safety marker still follows the
+    # existing rule, retrieval and fallback flow unchanged.
+    conversational_answer = build_conversational_answer(question)
+    if conversational_answer is not None:
+        elapsed_ms = round((time.perf_counter() - t0) * 1000)
+        _record_metrics(total_ms=elapsed_ms, **timings)
+        add_history(session.session_id, question, conversational_answer)
+        return ChatResponse(
+            answer=conversational_answer,
+            mode=mode,
+            model="local-conversation",
+            decision="conversational_local",
+            risk_level="",
+            matched_rule_id="",
+            matched_rule_action="",
+            low_confidence=False,
+            low_confidence_reason="",
+            followup_logged=False,
+            elapsed_ms=elapsed_ms,
+            session_id=session.session_id,
+            citations=[],
+            timings={"total_ms": elapsed_ms, **timings},
+        )
 
     t_retrieve = time.perf_counter()
     citations = retrieve_citations(question, top_k=DEFAULT_TOP_K)

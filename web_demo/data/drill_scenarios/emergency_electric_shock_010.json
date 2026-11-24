@@ -1,0 +1,59 @@
+{
+  "scenario_id": "emergency_electric_shock_010",
+  "title": "有人触电了",
+  "category": "emergency",
+  "difficulty": "intermediate",
+  "background": "A",
+  "overlay_svgs": [
+    "漏电闪电",
+    "橙红色告警光晕"
+  ],
+  "narrative": "你听到一声惊叫，隔壁实验台有个同学触电了，手粘在电源上浑身发抖，情况危急。",
+  "hint": "触电急救的第一原则是什么？你应该先做什么？",
+  "options": [
+    {
+      "id": "A",
+      "text": "立即切断电源或用绝缘物挑开电线",
+      "result": "✅ 正确。触电急救的第一原则是确保自身安全，先使触电者脱离电源。立即关闭电源开关或拔掉插头；如无法断电，用干燥的木棍、塑料管等绝缘物将电线挑开。绝不能徒手去拉！",
+      "feedback_type": "correct",
+      "score_delta": 10,
+      "is_deadly": false,
+      "kb_ids": [
+        "KB-ELEC-6001"
+      ],
+      "next_background": "A",
+      "next_svgs": []
+    },
+    {
+      "id": "B",
+      "text": "立刻冲过去把人拉开",
+      "result": "❌ 极度危险！直接用手拉触电者会导致你自己也触电，造成二次伤害。人体是导电的，电流会通过触电者传到你身上。必须先切断电源或用绝缘物使伤者脱离电源。",
+      "feedback_type": "danger",
+      "score_delta": -15,
+      "is_deadly": false,
+      "kb_ids": [
+        "KB-ELEC-6001"
+      ],
+      "next_background": "A",
+      "next_svgs": [
+        "漏电闪电",
+        "橙红色告警光晕"
+      ]
+    },
+    {
+      "id": "C",
+      "text": "先打120再想办法",
+      "result": "⚠️ 延误时机。拨打急救电话是必要的，但应该先让触电者脱离电源——每多一秒电击，伤害就加重一分。先断电救人，再拨打120，同时观察伤者情况。",
+      "feedback_type": "warning",
+      "score_delta": -8,
+      "is_deadly": false,
+      "kb_ids": [
+        "KB-ELEC-6001"
+      ],
+      "next_background": "A",
+      "next_svgs": [
+        "漏电闪电"
+      ]
+    }
+  ]
+}

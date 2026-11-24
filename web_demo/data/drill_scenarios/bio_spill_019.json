@@ -1,0 +1,65 @@
+{
+  "scenario_id": "bio_spill_019",
+  "title": "菌液洒在台面上",
+  "category": "emergency",
+  "difficulty": "intermediate",
+  "background": "A",
+  "overlay_svgs": [
+    "烧杯",
+    "橙红色告警光晕"
+  ],
+  "narrative": "你在接种时不小心打翻了一管大肠杆菌菌液，约 20mL 洒在生物安全柜台面上。旁边还有正在培养的细胞平板。",
+  "hint": "生物样本泄漏的标准处置流程是什么？能直接用纸巾擦吗？",
+  "options": [
+    {
+      "id": "A",
+      "text": "先用纸巾或吸水材料覆盖，倒上消毒剂作用规定时间后再清理",
+      "result": "操作正确。生物样本溢洒的标准处置流程是：先覆盖吸附材料防止扩散，再倾倒合适的消毒剂（如 75% 乙醇或含氯消毒剂），作用足够时间后，由内向外清理，废弃物按生物危害废物处理。整个过程应戴手套。",
+      "feedback_type": "correct",
+      "score_delta": 10,
+      "is_deadly": false,
+      "kb_ids": [
+        "KB-1034",
+        "KB-GAP-8029",
+        "KB-GAP-8030"
+      ],
+      "next_background": "A",
+      "next_svgs": []
+    },
+    {
+      "id": "B",
+      "text": "直接用纸巾擦掉，扔垃圾桶就行",
+      "result": "严重违规！直接擦拭生物溢洒物会产生气溶胶，增加吸入暴露风险，而且擦拭会扩大污染面积。污染的纸巾也不能直接扔普通垃圾桶，必须高压灭菌处理。这样做可能造成人员感染和环境污染。",
+      "feedback_type": "danger",
+      "score_delta": -15,
+      "is_deadly": false,
+      "kb_ids": [
+        "KB-1034",
+        "KB-GAP-8029",
+        "KB-GAP-8030"
+      ],
+      "next_background": "A",
+      "next_svgs": [
+        "橙红色告警光晕",
+        "化学灼伤抽象警示符号"
+      ]
+    },
+    {
+      "id": "C",
+      "text": "用水冲一下台面",
+      "result": "存在隐患。用水冲洗不仅不能灭菌，还会使菌液扩散，污染更大面积，甚至随水流进入下水道造成环境污染。生物溢洒必须使用消毒剂按标准流程处理。",
+      "feedback_type": "warning",
+      "score_delta": -8,
+      "is_deadly": false,
+      "kb_ids": [
+        "KB-1034",
+        "KB-GAP-8029",
+        "KB-GAP-8030"
+      ],
+      "next_background": "A",
+      "next_svgs": [
+        "橙红色告警光晕"
+      ]
+    }
+  ]
+}

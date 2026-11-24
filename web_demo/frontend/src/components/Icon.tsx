@@ -3,7 +3,8 @@ import type { JSX } from 'react';
 type IconName =
   | 'flask' | 'shield' | 'plus' | 'send' | 'sparkles' | 'chevron'
   | 'external' | 'alert' | 'info' | 'ban' | 'siren' | 'question'
-  | 'history' | 'menu' | 'settings' | 'book' | 'droplet' | 'fire' | 'database';
+  | 'history' | 'menu' | 'settings' | 'book' | 'droplet' | 'fire' | 'database'
+  | 'lock' | 'eye' | 'eyeOff' | 'arrowRight' | 'activity';
 
 interface IconProps {
   name: IconName;
@@ -31,6 +32,11 @@ const PATHS: Record<IconName, JSX.Element> = {
   droplet: <path d="M12 2.7s7 7 7 12a7 7 0 0 1-14 0c0-5 7-12 7-12z"/>,
   fire: <path d="M12 2s4 4 4 8a4 4 0 0 1-8 0c0-2 2-3 2-5 0-2-2-3-2-3s4 0 4 0zM6 14a6 6 0 0 0 12 0c0-3-3-6-3-6"/>,
   database: <g><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 3 4 5 9 5s9-2 9-5V5"/><path d="M3 12c0 3 4 5 9 5s9-2 9-5"/></g>,
+  lock: <g><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/><path d="M12 14v3"/></g>,
+  eye: <g><path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6z"/><circle cx="12" cy="12" r="2.5"/></g>,
+  eyeOff: <g><path d="M3 3l18 18"/><path d="M10.6 6.2A10.6 10.6 0 0 1 12 6c6 0 9.5 6 9.5 6a17.7 17.7 0 0 1-3.1 3.8M6.2 6.2C3.8 8 2.5 12 2.5 12s3.5 6 9.5 6c1.5 0 2.8-.4 4-1"/><path d="M9.9 9.9a3 3 0 0 0 4.2 4.2"/></g>,
+  arrowRight: <g><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></g>,
+  activity: <path d="M3 12h4l2-6 4 12 2-6h6"/>,
 };
 
 export default function Icon({ name, size = 16, stroke = 1.8 }: IconProps) {

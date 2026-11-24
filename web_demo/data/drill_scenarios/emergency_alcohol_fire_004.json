@@ -1,0 +1,56 @@
+﻿{
+  "scenario_id": "emergency_alcohol_fire_004",
+  "title": "酒精灯起火",
+  "category": "emergency",
+  "difficulty": "intermediate",
+  "background": "A",
+  "overlay_svgs": ["火苗", "烧杯", "橙红色告警光晕"],
+  "narrative": "你正在用酒精灯加热溶液，移动酒精灯时不小心打翻了，酒精洒在桌面上燃烧起来。火焰面积大约有手掌那么大，旁边还有一瓶乙醇和一些滤纸。",
+  "hint": "酒精属于易燃液体，起火了用什么方法最安全有效？",
+  "options": [
+    {
+      "id": "A",
+      "text": "用湿抹布或石棉网覆盖隔绝空气灭火",
+      "result": "✅ 操作正确。小面积酒精火灾最快速安全的方法是用湿抹布、石棉网或灭火毯覆盖，通过隔绝空气窒息灭火。酒精火不能用嘴吹，吹反而会助长火势。",
+      "feedback_type": "correct",
+      "score_delta": 10,
+      "is_deadly": false,
+      "kb_ids": ["KB-1005", "KB-1015"],
+      "next_background": "A",
+      "next_svgs": []
+    },
+    {
+      "id": "B",
+      "text": "用水泼上去浇灭火焰",
+      "result": "❌ 严重错误！酒精密度比水小，会浮在水面上继续燃烧，水流还会带着燃烧的酒精四处流淌，扩大火势范围。易燃液体火灾绝对禁止用水扑灭！",
+      "feedback_type": "danger",
+      "score_delta": -15,
+      "is_deadly": false,
+      "kb_ids": ["KB-1015", "KB-1032"],
+      "next_background": "A",
+      "next_svgs": ["火苗", "橙红色告警光晕"]
+    },
+    {
+      "id": "C",
+      "text": "用嘴吹灭火焰",
+      "result": "⚠️ 非常危险。用嘴吹酒精灯火焰不仅很难吹灭，反而会将火焰吹入灯内或吹向周围，引燃更多易燃物。正确做法是用灯帽盖灭（酒精灯正常熄灭时）或用湿抹布覆盖（打翻起火时）。",
+      "feedback_type": "warning",
+      "score_delta": -8,
+      "is_deadly": false,
+      "kb_ids": ["KB-1005", "KB-1015"],
+      "next_background": "A",
+      "next_svgs": ["火苗"]
+    },
+    {
+      "id": "D",
+      "text": "火势变大就用干粉灭火器",
+      "result": "✅ 补充正确。如果火势已经扩大无法用覆盖法扑灭，应使用干粉灭火器（ABC类）对准火焰根部喷射。同时切断电源、移除周围易燃物、报告实验室管理员。",
+      "feedback_type": "correct",
+      "score_delta": 10,
+      "is_deadly": false,
+      "kb_ids": ["KB-1032", "KB-1015"],
+      "next_background": "A",
+      "next_svgs": []
+    }
+  ]
+}

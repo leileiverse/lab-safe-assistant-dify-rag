@@ -1,0 +1,65 @@
+{
+  "scenario_id": "biosafety_cabinet_034",
+  "title": "生物安全柜开着紫外灯操作",
+  "category": "equipment",
+  "difficulty": "beginner",
+  "background": "A",
+  "overlay_svgs": [
+    "护目镜",
+    "橙红色告警光晕"
+  ],
+  "narrative": "你在生物安全柜里做细胞实验，紫外灯消毒时间到了，你直接开始操作，没有关紫外灯，觉得这样还能边做边消毒。",
+  "hint": "紫外灯开着的时候能在里面操作吗？为什么？",
+  "options": [
+    {
+      "id": "A",
+      "text": "操作前必须关闭紫外灯，开风机正常运行后再操作",
+      "result": "操作正确。紫外灯只用于无人时的表面消毒，操作时必须关闭。紫外光对皮肤和眼睛有伤害，而且开着紫外灯会干扰生物安全柜的气流，影响防护效果。正确流程是：开紫外消毒→关紫外→开风机运行几分钟→开始实验。",
+      "feedback_type": "correct",
+      "score_delta": 10,
+      "is_deadly": false,
+      "kb_ids": [
+        "KB-1034",
+        "KB-GAP-8034",
+        "KB-RECO-0377"
+      ],
+      "next_background": "A",
+      "next_svgs": []
+    },
+    {
+      "id": "B",
+      "text": "开着紫外灯消毒效果更好",
+      "result": "严重错误！在紫外灯开启的状态下操作会造成紫外线对皮肤和眼睛的直接照射，可引起电光性眼炎、皮肤红肿甚至增加皮肤癌风险。而且紫外线还可能影响实验样本，造成 DNA 损伤等。操作时必须关闭紫外灯。",
+      "feedback_type": "danger",
+      "score_delta": -12,
+      "is_deadly": false,
+      "kb_ids": [
+        "KB-1034",
+        "KB-GAP-8034",
+        "KB-RECO-0377"
+      ],
+      "next_background": "A",
+      "next_svgs": [
+        "橙红色告警光晕",
+        "化学灼伤抽象警示符号"
+      ]
+    },
+    {
+      "id": "C",
+      "text": "戴手套就没事",
+      "result": "防护不足。普通手套不能完全阻挡紫外线，而且面部、眼睛等部位仍然暴露。开紫外灯操作的问题不仅仅是皮肤接触，还有眼睛伤害和对实验的影响。必须关闭紫外灯后再操作。",
+      "feedback_type": "warning",
+      "score_delta": -6,
+      "is_deadly": false,
+      "kb_ids": [
+        "KB-1034",
+        "KB-GAP-8034",
+        "KB-RECO-0377"
+      ],
+      "next_background": "A",
+      "next_svgs": [
+        "橙红色告警光晕"
+      ]
+    }
+  ]
+}

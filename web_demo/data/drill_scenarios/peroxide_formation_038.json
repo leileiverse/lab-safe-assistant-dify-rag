@@ -1,0 +1,65 @@
+{
+  "scenario_id": "peroxide_formation_038",
+  "title": "旧乙醚还能蒸吗",
+  "category": "chemical",
+  "difficulty": "advanced",
+  "background": "A",
+  "overlay_svgs": [
+    "烧杯",
+    "橙红色告警光晕"
+  ],
+  "narrative": "你在试剂柜里找到一瓶开了封的乙醚，放了大概两年了，里面有点沉淀。你觉得扔了可惜，想蒸一下再用。",
+  "hint": "旧乙醚为什么危险？蒸馏过期乙醚会发生什么？",
+  "options": [
+    {
+      "id": "A",
+      "text": "过期乙醚可能生成过氧化物，绝对不能蒸馏，应按易爆危废处理",
+      "result": "操作正确。乙醚、异丙醚、四氢呋喃等醚类溶剂长期存放会与空气中的氧反应生成过氧化物。过氧化物受热、撞击或浓缩时极易发生爆炸。蒸馏或浓缩过期醚类溶剂是极其危险的操作，可能在蒸馏过程中过氧化物浓缩引发爆炸。必须按易爆危险废物规范处置。",
+      "feedback_type": "correct",
+      "score_delta": 10,
+      "is_deadly": false,
+      "kb_ids": [
+        "KB-MSDS-2010",
+        "KB-MSDS-2017",
+        "KB-CORNELL-11023"
+      ],
+      "next_background": "A",
+      "next_svgs": []
+    },
+    {
+      "id": "B",
+      "text": "蒸一下还能接着用，别浪费",
+      "result": "极度危险！蒸馏过期醚类是实验室最危险的操作之一！随着溶剂蒸发，过氧化物浓度越来越高，当达到一定浓度时，可能在蒸馏瓶中发生剧烈爆炸，造成严重伤亡。发现过期或疑似含过氧化物的醚类溶剂，绝对不能蒸馏，应按易爆危废专门处理。",
+      "feedback_type": "danger",
+      "score_delta": -20,
+      "is_deadly": true,
+      "kb_ids": [
+        "KB-MSDS-2010",
+        "KB-MSDS-2017",
+        "KB-CORNELL-11023"
+      ],
+      "next_background": "A",
+      "next_svgs": [
+        "火苗",
+        "橙红色告警光晕"
+      ]
+    },
+    {
+      "id": "C",
+      "text": "先加还原剂处理一下再蒸",
+      "result": "存在隐患。加还原剂处理过氧化物在理论上可行，但操作本身也有风险，而且无法保证完全去除。对于已过期较久的醚类，最安全的做法是直接按危废报废处理，不要冒险回收。",
+      "feedback_type": "warning",
+      "score_delta": -5,
+      "is_deadly": false,
+      "kb_ids": [
+        "KB-MSDS-2010",
+        "KB-MSDS-2017",
+        "KB-CORNELL-11023"
+      ],
+      "next_background": "A",
+      "next_svgs": [
+        "橙红色告警光晕"
+      ]
+    }
+  ]
+}

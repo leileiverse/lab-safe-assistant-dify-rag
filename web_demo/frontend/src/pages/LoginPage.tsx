@@ -62,18 +62,22 @@ export default function LoginPage() {
           borderRadius: 16,
           padding: '40px 36px',
           width: 360,
+          maxWidth: 'calc(100vw - 32px)',
           boxShadow: `0 0 40px ${COLORS.glow}`,
         }}
       >
         <div style={{ textAlign: 'center', marginBottom: 28 }}>
           <div style={{ fontSize: 22, fontWeight: 700, color: COLORS.text, marginBottom: 6 }}>
-            实验室安全助手
+            实验室安全小助手
           </div>
           <div style={{ fontSize: 13, color: COLORS.text2 }}>请输入访问密码</div>
         </div>
 
         <input
           type="password"
+          autoComplete="current-password"
+          aria-label="访问密码"
+          aria-describedby={error ? 'login-error' : undefined}
           value={input}
           onChange={(e) => { setInput(e.target.value); setError(''); }}
           onKeyDown={(e) => { if (e.key === 'Enter') submit(); }}
@@ -93,7 +97,7 @@ export default function LoginPage() {
         />
 
         {error && (
-          <div style={{ color: COLORS.red, fontSize: 13, marginBottom: 12, textAlign: 'center' }}>{error}</div>
+          <div id="login-error" role="alert" style={{ color: COLORS.red, fontSize: 13, marginBottom: 12, textAlign: 'center' }}>{error}</div>
         )}
 
         <button

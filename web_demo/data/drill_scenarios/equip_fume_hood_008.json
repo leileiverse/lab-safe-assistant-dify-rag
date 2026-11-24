@@ -1,0 +1,58 @@
+{
+  "scenario_id": "equip_fume_hood_008",
+  "title": "通风橱里放太多东西",
+  "category": "equipment",
+  "difficulty": "beginner",
+  "background": "A",
+  "overlay_svgs": [
+    "烧杯",
+    "量筒"
+  ],
+  "narrative": "你在通风橱里做实验，台面上摆满了各种试剂瓶、烧杯和仪器，几乎占满了整个通风橱空间。前窗拉到一半高度。",
+  "hint": "通风橱的使用有很多讲究，下面哪种情况是违规的？",
+  "options": [
+    {
+      "id": "A",
+      "text": "物品过多影响气流，应该清理出不必要的东西",
+      "result": "✅ 正确。通风橱内堆放太多物品会扰乱气流，降低通风效率，有害气体可能外泄。通风橱内只应放置当前实验必需的物品，操作时前窗应降至安全刻度线以下。",
+      "feedback_type": "correct",
+      "score_delta": 10,
+      "is_deadly": false,
+      "kb_ids": [
+        "KB-1001"
+      ],
+      "next_background": "A",
+      "next_svgs": []
+    },
+    {
+      "id": "B",
+      "text": "只要操作在通风橱里就安全，东西多没关系",
+      "result": "❌ 错误。通风橱的通风效果依赖于柜内气流的稳定流动，物品过多会形成涡流和死角，导致有害气体不能有效排出，甚至从操作口外泄，危害操作人员健康。",
+      "feedback_type": "danger",
+      "score_delta": -12,
+      "is_deadly": false,
+      "kb_ids": [
+        "KB-1001"
+      ],
+      "next_background": "A",
+      "next_svgs": [
+        "橙红色告警光晕"
+      ]
+    },
+    {
+      "id": "C",
+      "text": "前窗拉高点，方便操作",
+      "result": "⚠️ 危险操作。通风橱前窗有安全高度刻度线，超过这个高度会导致面风速不足，无法有效阻挡有害气体外泄。操作时前窗必须保持在安全刻度以下。",
+      "feedback_type": "warning",
+      "score_delta": -8,
+      "is_deadly": false,
+      "kb_ids": [
+        "KB-1001"
+      ],
+      "next_background": "A",
+      "next_svgs": [
+        "橙红色告警光晕"
+      ]
+    }
+  ]
+}

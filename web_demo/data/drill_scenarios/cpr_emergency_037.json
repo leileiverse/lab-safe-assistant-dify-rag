@@ -1,0 +1,65 @@
+{
+  "scenario_id": "cpr_emergency_037",
+  "title": "有人触电晕倒了",
+  "category": "emergency",
+  "difficulty": "advanced",
+  "background": "A",
+  "overlay_svgs": [
+    "漏电闪电",
+    "橙红色告警光晕"
+  ],
+  "narrative": "你听到隔壁一声惨叫，跑过去发现一个同学倒在地上，旁边有一根裸露的电线还在冒火花。同学已经没有意识了，胸口也不动了。",
+  "hint": "发现有人触电，第一步是什么？能不能直接去拉人？",
+  "options": [
+    {
+      "id": "A",
+      "text": "先切断电源或用绝缘物挑开电线，再检查意识和呼吸，必要时 CPR 并拨打 120",
+      "result": "操作正确。触电急救的第一原则是确保自己安全。先切断电源（拉闸、拔插头），或用干燥的木棍、塑料杆等绝缘物挑开电线。确认断电后，检查伤员意识和呼吸，如无呼吸无脉搏应立即开始心肺复苏（CPR），同时呼叫 120。",
+      "feedback_type": "correct",
+      "score_delta": 10,
+      "is_deadly": false,
+      "kb_ids": [
+        "KB-ELEC-6001",
+        "KB-RECO-0008",
+        "KB-RECO-0185"
+      ],
+      "next_background": "A",
+      "next_svgs": []
+    },
+    {
+      "id": "B",
+      "text": "赶紧冲过去把人拉开",
+      "result": "致命错误！直接用手去拉触电的人，电流会通过触电者传导到施救者身上，造成施救者也触电，可能双双死亡。这是触电急救中最致命的错误。必须先断电，再救人！",
+      "feedback_type": "danger",
+      "score_delta": -20,
+      "is_deadly": true,
+      "kb_ids": [
+        "KB-ELEC-6001",
+        "KB-RECO-0008",
+        "KB-RECO-0185"
+      ],
+      "next_background": "A",
+      "next_svgs": [
+        "漏电闪电",
+        "橙红色告警光晕"
+      ]
+    },
+    {
+      "id": "C",
+      "text": "先打 120，等救护车来再说",
+      "result": "处置不完整。拨打 120 是必要的，但不能只是等待。对于心跳呼吸骤停的伤员，每延迟一分钟 CPR，存活率就下降 7-10%。正确做法是：断电的同时呼叫他人拨打 120，自己立即开始心肺复苏，持续到专业人员到达。",
+      "feedback_type": "warning",
+      "score_delta": -5,
+      "is_deadly": false,
+      "kb_ids": [
+        "KB-ELEC-6001",
+        "KB-RECO-0008",
+        "KB-RECO-0185"
+      ],
+      "next_background": "A",
+      "next_svgs": [
+        "橙红色告警光晕"
+      ]
+    }
+  ]
+}

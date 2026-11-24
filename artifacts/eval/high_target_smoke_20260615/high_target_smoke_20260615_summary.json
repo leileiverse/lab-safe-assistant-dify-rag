@@ -1,0 +1,16 @@
+{
+  "count": 8,
+  "passed_under_3s": 8,
+  "avg_ms": 74.8,
+  "max_ms": 171,
+  "models": {
+    "local-fast-path": 5,
+    "rule-engine": 3
+  },
+  "decisions": {
+    "dify_answer": 3,
+    "dify_answer_guarded": 2,
+    "emergency_redirect": 1,
+    "rule_blocked": 2
+  }
+}

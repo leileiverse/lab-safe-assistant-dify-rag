@@ -1,0 +1,65 @@
+{
+  "scenario_id": "water_leak_electric_027",
+  "title": "实验室漏水了",
+  "category": "emergency",
+  "difficulty": "intermediate",
+  "background": "A",
+  "overlay_svgs": [
+    "漏电闪电",
+    "橙红色告警光晕"
+  ],
+  "narrative": "你听到滴答声，发现实验台上方的水管接口在漏水，水已经顺着电线滴到了下面的仪器插座上。旁边的设备还通着电。",
+  "hint": "漏水+有电的情况下，第一步应该做什么？能不能直接用手去关阀门？",
+  "options": [
+    {
+      "id": "A",
+      "text": "先切断该区域电源，再关闭水阀，通知相关人员处理",
+      "result": "操作正确。水+电是极度危险的组合，第一步必须确保不触电。正确顺序是：先切断电源（按总闸或该区域断路器），确认断电后再关闭水阀，清理积水，检查设备受损情况，并通知相关人员维修。千万不要在通电状态下接触漏水区域。",
+      "feedback_type": "correct",
+      "score_delta": 10,
+      "is_deadly": false,
+      "kb_ids": [
+        "KB-PHASE4-0708",
+        "KB-EQUIP2-0014",
+        "KB-BLK-9137"
+      ],
+      "next_background": "A",
+      "next_svgs": []
+    },
+    {
+      "id": "B",
+      "text": "赶紧用手去拧水阀关上",
+      "result": "致命错误！水是导电的，漏水已经使电线和插座带电。用湿手或在积水环境中直接接触水阀、设备等金属部件，极有可能造成触电，严重时可导致心跳骤停死亡。水+电场景必须先断电再处理！",
+      "feedback_type": "danger",
+      "score_delta": -20,
+      "is_deadly": true,
+      "kb_ids": [
+        "KB-PHASE4-0708",
+        "KB-EQUIP2-0014",
+        "KB-BLK-9137"
+      ],
+      "next_background": "A",
+      "next_svgs": [
+        "漏电闪电",
+        "橙红色告警光晕"
+      ]
+    },
+    {
+      "id": "C",
+      "text": "先找个盆接住，等实验做完再说",
+      "result": "存在严重隐患。漏水如果持续，可能导致更多设备进水、短路甚至引发火灾。漏水在电气环境下属于紧急情况，应立即处理，不能拖延。小问题拖延可能演变成大事故。",
+      "feedback_type": "warning",
+      "score_delta": -8,
+      "is_deadly": false,
+      "kb_ids": [
+        "KB-PHASE4-0708",
+        "KB-EQUIP2-0014",
+        "KB-BLK-9137"
+      ],
+      "next_background": "A",
+      "next_svgs": [
+        "橙红色告警光晕"
+      ]
+    }
+  ]
+}

@@ -29,6 +29,7 @@ function getModelLabel(model?: string): string {
   if (model === 'dify-workflow') return 'Dify 主链路';
   if (model === 'rule-engine') return '规则引擎';
   if (model === 'fallback-rule-engine') return '结构化兜底';
+  if (model === 'local-conversation') return '本地会话响应';
   return model || '';
 }
 
@@ -38,6 +39,7 @@ function getSourceHint(resp: ChatResponse): string {
   if (resp.model === 'dify-workflow') return '正式知识库主链路';
   if (resp.model === 'rule-engine') return '规则库直接判定';
   if (resp.model === 'fallback-rule-engine') return '规则+检索兜底';
+  if (resp.model === 'local-conversation') return '内置会话响应';
   return '回答来源已标注';
 }
 

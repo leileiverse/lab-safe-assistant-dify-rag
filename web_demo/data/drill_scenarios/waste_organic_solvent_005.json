@@ -1,0 +1,45 @@
+﻿{
+  "scenario_id": "waste_organic_solvent_005",
+  "title": "有机废液倒进下水道",
+  "category": "waste",
+  "difficulty": "beginner",
+  "background": "A",
+  "overlay_svgs": ["废液桶", "烧杯"],
+  "narrative": "实验做完了，你手上有一小瓶废乙醇和丙酮混合液。水槽就在旁边，你在想这点量应该没事吧？",
+  "hint": "实验室废弃物有严格的处理规定，什么样的废液能直接排？",
+  "options": [
+    {
+      "id": "A",
+      "text": "倒入专用有机废液桶，做好分类标签记录",
+      "result": "✅ 操作正确。实验室有机废液必须分类收集到专用废液桶中，做好标签记录（废液类别、主要成分、产生日期等），由有资质的单位统一回收处置。严禁直接倒入下水道。",
+      "feedback_type": "correct",
+      "score_delta": 10,
+      "is_deadly": false,
+      "kb_ids": ["KB-1003", "KB-1022"],
+      "next_background": "A",
+      "next_svgs": ["废液桶"]
+    },
+    {
+      "id": "B",
+      "text": "量不多，直接倒入水槽冲掉就行",
+      "result": "❌ 严重违规！有机废液倒入下水道会造成严重的水体污染和环境危害，也违反了《危险废物管理条例》和实验室安全规定。即使量少，也必须分类收集。有机溶剂挥发还可能在下水道中形成爆炸性气体混合物。",
+      "feedback_type": "danger",
+      "score_delta": -15,
+      "is_deadly": false,
+      "kb_ids": ["KB-1003", "KB-1022"],
+      "next_background": "A",
+      "next_svgs": ["橙红色告警光晕"]
+    },
+    {
+      "id": "C",
+      "text": "先倒进水槽，然后用大量水冲稀",
+      "result": "⚠️ 仍然是违规的。用水稀释并不能消除有机物的环境危害，也不改变违规性质。实验室废液不论浓度、不论多少，都必须按规定分类收集处理。",
+      "feedback_type": "warning",
+      "score_delta": -8,
+      "is_deadly": false,
+      "kb_ids": ["KB-1003"],
+      "next_background": "A",
+      "next_svgs": ["橙红色告警光晕"]
+    }
+  ]
+}

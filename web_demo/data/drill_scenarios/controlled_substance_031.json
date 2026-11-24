@@ -1,0 +1,64 @@
+{
+  "scenario_id": "controlled_substance_031",
+  "title": "易制毒药品怎么领用",
+  "category": "chemical",
+  "difficulty": "intermediate",
+  "background": "A",
+  "overlay_svgs": [
+    "浓硫酸试剂瓶",
+    "废液桶"
+  ],
+  "narrative": "你做实验需要用到丙酮，用量比较大。你觉得反正就是个溶剂，登记一下直接去库房领就行，不用太麻烦。",
+  "hint": "丙酮属于什么类别的化学品？领用有什么特殊规定吗？",
+  "options": [
+    {
+      "id": "A",
+      "text": "丙酮是易制毒化学品，必须按规定走审批流程，双人领用登记",
+      "result": "操作正确。丙酮属于第三类易制毒化学品，其采购、领用、储存、使用、废弃都有严格的管理规定，需要审批、登记、台账管理，做到账物相符。易制毒化学品管理是法律要求，违规可承担法律责任。",
+      "feedback_type": "correct",
+      "score_delta": 10,
+      "is_deadly": false,
+      "kb_ids": [
+        "WEBX-031-001",
+        "WEB-004-001",
+        "WEB-004-004"
+      ],
+      "next_background": "A",
+      "next_svgs": []
+    },
+    {
+      "id": "B",
+      "text": "就是普通溶剂，领了直接用",
+      "result": "严重违规！易制毒化学品的管理有法律法规明确要求，不按规定领用、使用、储存都是违法行为，可能承担行政甚至刑事责任。实验室必须建立完整的易制毒化学品管理制度，做到采购有审批、使用有记录、库存有台账。",
+      "feedback_type": "danger",
+      "score_delta": -12,
+      "is_deadly": false,
+      "kb_ids": [
+        "WEBX-031-001",
+        "WEB-004-001",
+        "WEB-004-004"
+      ],
+      "next_background": "A",
+      "next_svgs": [
+        "橙红色告警光晕"
+      ]
+    },
+    {
+      "id": "C",
+      "text": "少领一点就不用走流程了",
+      "result": "存在隐患。易制毒化学品管理没有\"量少就不用管\"的说法。只要是列管品种，无论数量多少都必须按规定管理。少领多次、化整为零规避监管的行为反而更严重。",
+      "feedback_type": "warning",
+      "score_delta": -8,
+      "is_deadly": false,
+      "kb_ids": [
+        "WEBX-031-001",
+        "WEB-004-001",
+        "WEB-004-004"
+      ],
+      "next_background": "A",
+      "next_svgs": [
+        "橙红色告警光晕"
+      ]
+    }
+  ]
+}
