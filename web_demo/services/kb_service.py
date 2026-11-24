@@ -18,6 +18,7 @@ from ..repositories import (
     TERMINAL_ACTIONS,
     REFUSE_INTENT_MARKERS,
     EMERGENCY_INTENT_MARKERS,
+    has_casualty_report,
     normalize_search_text,
     extract_tokens,
     get_kb_entries,
@@ -60,6 +61,10 @@ _QUERY_ANCHOR_GROUPS = [
     ("diethyl_ether", ["乙醚", "diethyl ether"]),
     ("chemical_spill", ["泄漏", "洒漏", "打翻", "溅洒", "洒在", "洒出", "泼洒", "溢出"]),
     ("drying_oven", ["烘箱", "干燥箱"]),
+    # 低温液体：不加这一组时，"液氮罐压力异常升高"的 BM25 top1 会落到
+    # GC-MS 氢气载气/ICP-MS 钢瓶/DSC 高压坩埚这类同样含"压力/气瓶"的条目，
+    # 把无关来源当成"参考依据"列出来。
+    ("cryogenic_liquid", ["液氮", "液氦", "杜瓦", "低温液体", "深冷", "cryogen"]),
 ]
 _INCIDENT_ANCHOR_NAMES = {"chemical_spill"}
 
@@ -211,7 +216,9 @@ def retrieve_citations(question: str, top_k: int = DEFAULT_TOP_K) -> list[Citati
 
 def match_rule(question: str) -> dict[str, Any] | None:
     q = normalize_search_text(question)
-    has_emergency_intent = any(marker in q for marker in EMERGENCY_INTENT_MARKERS)
+    has_emergency_intent = any(
+        marker in q for marker in EMERGENCY_INTENT_MARKERS
+    ) or has_casualty_report(question)
     has_refuse_intent = any(marker in q for marker in REFUSE_INTENT_MARKERS)
     best: dict[str, Any] | None = None
     for order, rule in enumerate(get_rules_config().get("rules") or []):
@@ -224,23 +231,58 @@ def match_rule(question: str) -> dict[str, Any] | None:
         severity = str(rule.get("severity") or "low").lower()
         action = str(rule.get("action") or "safe_answer")
         enforcement = str(rule.get("enforcement") or "")
-        # 同一严重度下，优先选择与用户当前意图一致的规则。否则像“乙醚泄漏后
-        # 头晕怎么办”会因为 R-002 在 YAML 中排得更早而落到“禁止明火加热”，
-        # 压过真正需要的泄漏/吸入应急规则。
+        # 同一严重度下，优先选择与用户当前意图一致的规则。
+        # 1) action 跟用户当前意图对齐时给正分（3/2/1），让它们胜过同 severity
+        #    的“沉默候选”。
+        # 2) action 跟用户当前意图不对齐时给负分（-1），让
+        #    ``direct_safe_answer`` / ``ask_for_more_info`` 等更贴合的规则
+        #    能压过它。例如：query 是“钠金属应该如何安全储存？”没有
+        #    ``EMERGENCY_INTENT_MARKERS``，R-026（redirect_emergency, critical）
+        #    不该压过 R-027（direct_safe_answer, high）这条专门的 storage
+        #    规则；再如 R-002（refuse）只在用户有“可以吗/能不能”等 refuse
+        #    意图或 enforcement=always 时才该压过其它候选。
+        # 否则像“乙醚泄漏后头晕怎么办”会因为 R-002 在 YAML 中排得更早而
+        # 落到“禁止明火加热”，压过真正需要的泄漏/吸入应急规则。
+        # ``enforcement: always`` 表示"命中即触发，不再要求问句里另有意图关键词"。
+        # 对 redirect_emergency 而言，这适用于 patterns 本身就是事故描述的规则
+        # （如 R-030"昏迷/不省人事"、R-031"液氮罐超压"）：用户写"同事昏迷不醒"
+        # 就已经是在报事故了，不该因为句子里没有"怎么办"就被判成非应急。
+        always_enforced = enforcement.strip().lower() == "always"
         intent_priority = 0
-        if action == "redirect_emergency" and has_emergency_intent:
-            intent_priority = 3
-        elif action == "refuse" and (has_refuse_intent or enforcement.strip().lower() == "always"):
-            intent_priority = 2
+        if action == "redirect_emergency":
+            intent_priority = 3 if (has_emergency_intent or always_enforced) else -1
+        elif action == "refuse":
+            if has_refuse_intent or always_enforced:
+                intent_priority = 2
+            else:
+                intent_priority = -1
         elif action in {"ask_for_more_info", "direct_safe_answer"}:
             intent_priority = 1
+        # intent_alignment 作为排序元组的第一维：当 action 跟用户当前意图
+        # 不对齐（如 redirect_emergency 没有 emergency marker、refuse 没有
+        # refuse marker 且 enforcement 不是 always）时降到 0；否则 1。这一
+        # 维的优先级高于 severity，专门防止“高 severity 但 action 错配”的
+        # 规则压过“低 severity 但 action 贴切”的规则，例如 R-026（critical,
+        # redirect_emergency）在 storage query 里压过 R-027（high,
+        # direct_safe_answer）。
+        intent_alignment = 1
+        if action == "redirect_emergency" and not (has_emergency_intent or always_enforced):
+            intent_alignment = 0
+        elif action == "refuse" and not (has_refuse_intent or always_enforced):
+            intent_alignment = 0
         candidate = {
             "id": str(rule.get("id") or ""),
             "action": action,
             "severity": severity,
             "response": str(rule.get("response") or ""),
             "enforcement": enforcement,
-            "score": (SEVERITY_SCORE.get(severity, 1), intent_priority, len(hits), -order),
+            "score": (
+                intent_alignment,
+                SEVERITY_SCORE.get(severity, 1),
+                intent_priority,
+                len(hits),
+                -order,
+            ),
         }
         if best is None or candidate["score"] > best["score"]:
             best = candidate
@@ -265,7 +307,12 @@ def should_enforce_terminal_rule(question: str, rule: dict[str, Any] | None) -> 
         return any(marker in q for marker in REFUSE_INTENT_MARKERS)
 
     if action == "redirect_emergency":
-        return any(marker in q for marker in EMERGENCY_INTENT_MARKERS)
+        # 与 match_rule 一致：enforcement=always 的应急规则命中即触发，不再
+        # 要求问句里另有 EMERGENCY_INTENT_MARKERS。用于"同事昏迷不醒"这类
+        # 本身就是事故陈述、却不含"怎么办"的输入。
+        if str(rule.get("enforcement") or "").strip().lower() == "always":
+            return True
+        return any(marker in q for marker in EMERGENCY_INTENT_MARKERS) or has_casualty_report(question)
 
     return False
 
@@ -286,3 +333,4 @@ def should_force_more_info(question: str, rule: dict[str, Any] | None = None) ->
         return True
 
     return False
+
